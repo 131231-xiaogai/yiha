@@ -12,10 +12,11 @@ public class GoodBean {
 	private String Leg_width;
 	private String trousers_length;
 	private String meterial_id;
-	private String size_id;
+	private String size;
 	private String type_id;
 	private String activility_id;
 	private String shop_id;
+	private String good_img;
 	public String getGoods_id() {
 		return goods_id;
 	}
@@ -83,10 +84,10 @@ public class GoodBean {
 		this.meterial_id = meterial_id;
 	}
 	public String getSize_id() {
-		return size_id;
+		return size;
 	}
 	public void setSize_id(String size_id) {
-		this.size_id = size_id;
+		this.size = size_id;
 	}
 	public String getType_id() {
 		return type_id;
@@ -105,6 +106,12 @@ public class GoodBean {
 	}
 	public void setShop_id(String shop_id) {
 		this.shop_id = shop_id;
+	}
+	public String getGood_img() {
+		return good_img;
+	}
+	public void setGood_img(String good_img) {
+		this.good_img = good_img;
 	}
 	
 	

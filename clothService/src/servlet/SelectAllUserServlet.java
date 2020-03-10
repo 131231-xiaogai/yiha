@@ -10,18 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.GoodBean;
+import bean.TMessage;
+import bean.UsersBean;
+
 import com.alibaba.fastjson.JSON;
 
 import dao.GoodDao;
-import bean.GoodBean;
-import bean.TMessage;
+import dao.UsersDao;
 
-public class SelectAllGoodServlet extends HttpServlet {
+public class SelectAllUserServlet extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public SelectAllGoodServlet() {
+	public SelectAllUserServlet() {
 		super();
 	}
 
@@ -65,15 +68,14 @@ public class SelectAllGoodServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;utf-8");
 
-		
-		TMessage<List<GoodBean>> tMessage=new TMessage(); 
+		TMessage<List<UsersBean>> tMessage=new TMessage(); 
 		
 		PrintWriter printWriter=response.getWriter();
 		try {
-			List<GoodBean> goodBeans=GoodDao.selectAllGood();
+			List<UsersBean> usersBeans=UsersDao.selectAllUser();
 			tMessage.setCode(200);
 			tMessage.setMessage("查询成功");
-			tMessage.setData(goodBeans);   //存放要返回给前端显示的数据
+			tMessage.setData(usersBeans);   //存放要返回给前端显示的数据
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
 			tMessage.setCode(-11);
