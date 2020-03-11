@@ -38,9 +38,7 @@ public static List<UsersBean> selectAllUser() throws SQLException{
 				usersBean.setBalance(resultSet.getString("balance"));
 				usersBean.setId_number(resultSet.getString("id_number"));
 				usersBean.setRole_id(resultSet.getString("role_id"));
-				usersBean.setCom_id(resultSet.getString("com_id"));
 				usersBeans.add(usersBean);
-				
 			}
 		}
 		return usersBeans;
@@ -56,7 +54,6 @@ public static UsersBean select_user_by_id() throws SQLException{
 	
 	if(resultSet!=null){
 		while(resultSet.next()){
-			
 			usersBean.setUerid(resultSet.getString("uerid"));
 			usersBean.setPhone(resultSet.getString("phone"));
 			usersBean.setPassword(resultSet.getString("password"));
@@ -65,8 +62,7 @@ public static UsersBean select_user_by_id() throws SQLException{
 			usersBean.setImage(resultSet.getString("image"));
 			usersBean.setBalance(resultSet.getString("balance"));
 			usersBean.setId_number(resultSet.getString("id_number"));
-			usersBean.setRole_id(resultSet.getString("role_id"));
-			usersBean.setCom_id(resultSet.getString("com_id"));
+			usersBean.setRole_id(resultSet.getString("role_id"));			
 			//usersBeans.add(usersBean);	
 		}
 	}

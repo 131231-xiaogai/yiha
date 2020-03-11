@@ -10,7 +10,7 @@ public class UsersBean {
 	private String balance;
 	private String id_number;
 	private String role_id;
-	private String com_id;
+	
 	public String getUerid() {
 		return uerid;
 	}
@@ -65,11 +65,7 @@ public class UsersBean {
 	public void setRole_id(String role_id) {
 		this.role_id = role_id;
 	}
-	public String getCom_id() {
-		return com_id;
-	}
-	public void setCom_id(String com_id) {
-		this.com_id = com_id;
+
 	}
 	
-}
+
