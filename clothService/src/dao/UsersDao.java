@@ -14,8 +14,8 @@ import bean.UsersBean;
 public class UsersDao {
 	
 	static Connection connection=DBBean.getConn();  //创建连接
-	static PreparedStatement preparedStatement;     //定义表示SQL语句的变量，以参数形传入数据库操作语句来执行数据库操作
-	static ResultSet resultSet;                     //定义表示查询结果的变量。
+	static PreparedStatement preparedStatement = null;     //定义表示SQL语句的变量，以参数形传入数据库操作语句来执行数据库操作
+	static ResultSet resultSet=null;                    
 	
 	//数据库操作
 public static List<UsersBean> selectAllUser() throws SQLException{
@@ -43,6 +43,26 @@ public static List<UsersBean> selectAllUser() throws SQLException{
 		}
 		return usersBeans;
 	}
+
+public static boolean user_regiest(String reg_phonemb,String reg_bassword,String reg_roleid)throws SQLException  {
+	boolean flag=false;
+	
+	String sql = "insert into user(phone,password,role_id) values(?,?,?)";
+	preparedStatement=connection.prepareStatement(sql);
+	preparedStatement.setString(1, reg_phonemb);
+	preparedStatement.setString(2, reg_bassword);
+	preparedStatement.setString(3, reg_roleid);
+	int results =preparedStatement.executeUpdate();//更新
+	
+	if(results ==1){
+		
+		flag=true;
+	}
+	return flag;		
+}
+
+	
+
 
 public static UsersBean select_user_by_id() throws SQLException{
 	
