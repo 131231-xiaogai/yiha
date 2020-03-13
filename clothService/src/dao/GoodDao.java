@@ -48,4 +48,20 @@ public class GoodDao {
 		}
 		return goodBeans;
 	}
+
+	public static boolean addgood(String image)throws SQLException {
+		Boolean flag = false;
+		String sql = "INSERT INTO `goods` (`good_img`) VALUES (?)";
+		preparedStatement=connection.prepareStatement(sql);
+		
+		preparedStatement.setString(1, image);
+		
+		int row = preparedStatement.executeUpdate();
+		if (row>0) {
+			flag = true;
+		}
+		return flag;	
+	}
+
+
 }

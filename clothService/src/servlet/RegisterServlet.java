@@ -85,7 +85,7 @@ public class RegisterServlet extends HttpServlet {
 				me.setData(reg_roleid);
 			}else{
 				me.setCode(-11);//返回给前端程序代码
-				me.setMessage("注册成功失败，请重试。");//返回给用户看
+				me.setMessage("注册失败，请重试。");//返回给用户看
 				me.setData(null);
 				
 			}

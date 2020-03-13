@@ -44,6 +44,7 @@ public static List<UsersBean> selectAllUser() throws SQLException{
 		return usersBeans;
 	}
 
+
 public static boolean user_regiest(String reg_phonemb,String reg_bassword,String reg_roleid)throws SQLException  {
 	boolean flag=false;
 	
@@ -53,17 +54,11 @@ public static boolean user_regiest(String reg_phonemb,String reg_bassword,String
 	preparedStatement.setString(2, reg_bassword);
 	preparedStatement.setString(3, reg_roleid);
 	int results =preparedStatement.executeUpdate();//¸üÐÂ
-	
 	if(results ==1){
-		
 		flag=true;
 	}
 	return flag;		
 }
-
-	
-
-
 public static UsersBean select_user_by_id() throws SQLException{
 	
 	UsersBean usersBean=new UsersBean();

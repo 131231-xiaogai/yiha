@@ -50,6 +50,13 @@
     <servlet-name>RegisterServlet</servlet-name>
     <servlet-class>servlet.RegisterServlet</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>PublicgoodServlet</servlet-name>
+    <servlet-class>servlet.PublicgoodServlet</servlet-class>
+  </servlet>
+
 
 
 
@@ -83,6 +90,10 @@
   <servlet-mapping>
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/RegisterServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PublicgoodServlet</servlet-name>
+    <url-pattern>/PublicgoodServlet</url-pattern>
   </servlet-mapping>
   
 

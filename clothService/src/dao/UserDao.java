@@ -9,6 +9,9 @@ import bean.DBBean;
 import bean.UsersBean;
 
 public class UserDao {
+	/*
+	 * 登录方法和通过手机号查找用户方法
+	 * */
 
 	static Connection connection = DBBean.getConn();
 
