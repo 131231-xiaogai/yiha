@@ -78,7 +78,7 @@ public class PublicgoodServlet extends HttpServlet {
                     	goodBean.setGoods_name(content);
                     } 
                 } else {
-                    File tempFile = new File(request.getSession().getServletContext().getRealPath("/") + "image" + File.separator
+                    File tempFile = new File(request.getSession().getServletContext().getRealPath("/") + "images" + File.separator
                             + new File(System.currentTimeMillis() + "_" + tempitemFileItem.getName()).getName());
                     System.out.println(tempFile);
                     if (!tempFile.getParentFile().exists()) tempFile.getParentFile().mkdirs();
