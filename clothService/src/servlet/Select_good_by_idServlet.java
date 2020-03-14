@@ -3,27 +3,26 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSON;
+
+import dao.GoodDao;
+import dao.UserDao;
+import bean.GoodBean;
 import bean.TMessage;
 import bean.UsersBean;
 
-import com.alibaba.fastjson.JSON;
-
-import dao.UserDao;
-import dao.UsersDao;
-
-public class Select_user_by_phoneServlet extends HttpServlet {
+public class Select_good_by_idServlet extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public Select_user_by_phoneServlet() {
+	public Select_good_by_idServlet() {
 		super();
 	}
 
@@ -49,6 +48,8 @@ public class Select_user_by_phoneServlet extends HttpServlet {
 			throws ServletException, IOException {
 				doPost(request, response);
 	}
+
+
 	/**
 	 * The doPost method of the servlet. <br>
 	 *
@@ -66,17 +67,22 @@ public class Select_user_by_phoneServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;utf-8");
 		
-		String phone=request.getParameter("mphone");
-
-		TMessage  tMessage=new TMessage(); 
+		String goods_id=request.getParameter("goods_id");
+		
+		TMessage  tMessage=new TMessage();
 		
 		PrintWriter printWriter=response.getWriter();
 		
 		try {
-			UsersBean usersBean=UserDao.select_user_by_phone(phone);
+			GoodBean goodBean=GoodDao.select_good_by_id(goods_id);
+			
+		/*	goodBean.setGood_img(request.getRequestURL()
+						.toString().replace(request.getServletPath(),"")+"/images/" + goodBean.getGood_img());
+				
+			*/
 			tMessage.setCode(200);
 			tMessage.setMessage("查询成功");
-			tMessage.setData(usersBean);   //存放要返回给前端显示的数据
+			tMessage.setData(goodBean);   //存放要返回给前端显示的数据
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
 			tMessage.setCode(-11);
@@ -86,6 +92,8 @@ public class Select_user_by_phoneServlet extends HttpServlet {
 		}
 		
 		printWriter.print(JSON.toJSONString(tMessage));
+
+	
 		
 	}
 

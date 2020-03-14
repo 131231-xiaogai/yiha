@@ -83,11 +83,11 @@ public class GoodBean {
 	public void setMeterial_id(String meterial_id) {
 		this.meterial_id = meterial_id;
 	}
-	public String getSize_id() {
+	public String getSize() {
 		return size;
 	}
-	public void setSize_id(String size_id) {
-		this.size = size_id;
+	public void setSize(String size) {
+		this.size = size;
 	}
 	public String getType_id() {
 		return type_id;

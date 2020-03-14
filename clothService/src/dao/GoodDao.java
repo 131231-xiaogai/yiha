@@ -9,6 +9,7 @@ import java.util.List;
 
 import bean.DBBean;
 import bean.GoodBean;
+import bean.UsersBean;
 
 public class GoodDao {
 	static Connection connection=DBBean.getConn();  //创建连接
@@ -37,7 +38,7 @@ public class GoodDao {
 				goodBean.setLeg_width(resultSet.getString("Leg_width"));
 				goodBean.setTrousers_length(resultSet.getString("trousers_length"));
 				goodBean.setMeterial_id(resultSet.getString("meterial_id"));
-				goodBean.setSize_id(resultSet.getString("size"));
+				goodBean.setSize(resultSet.getString("size"));
 				goodBean.setType_id(resultSet.getString("type_id"));
 				goodBean.setActivility_id(resultSet.getString("activility_id"));
 				goodBean.setShop_id(resultSet.getString("shop_id"));
@@ -63,5 +64,39 @@ public class GoodDao {
 		return flag;	
 	}
 
-
+	
+	public static GoodBean select_good_by_id(String goods_id) throws SQLException {
+		GoodBean goodBean = null;//
+		String sql = "select * from goods where goods_id=?";
+		preparedStatement=connection.prepareStatement(sql);
+		preparedStatement.setString(1, goods_id);
+		resultSet=preparedStatement.executeQuery();
+		if (resultSet != null) {
+			if (resultSet.next()) {
+				goodBean =new GoodBean();
+				goodBean.setGoods_name(resultSet.getString("goods_name"));
+				goodBean.setGood_img(resultSet.getString("good_img"));
+				goodBean.setGoods_price(resultSet.getString("goods_price"));
+				
+				goodBean.setGoods_status(resultSet.getString("goods_status"));
+				goodBean.setGoods_yajin(resultSet.getString("goods_yajin"));
+				goodBean.setActivility_id(resultSet.getString("activility_id"));
+				goodBean.setClothing_length(resultSet.getString("Clothing_length"));
+				goodBean.setLeg_width(resultSet.getString("Leg_width"));
+				goodBean.setMeterial_id(resultSet.getString("meterial_id"));
+				
+				goodBean.setSleeve_length(resultSet.getString("Sleeve_length"));
+				goodBean.setShoulder_width(resultSet.getString("Shoulder_width"));
+				goodBean.setTrousers_length(resultSet.getString("trousers_length"));
+				goodBean.setSize(resultSet.getString("size"));
+				goodBean.setType_id(resultSet.getString("type_id"));
+				goodBean.setShop_id(resultSet.getString("shop_id"));
+				
+				
+				
+			}			
+		}
+			
+		return goodBean;	
+	}
 }
