@@ -9,22 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Message;
-import bean.TMessage;
-import bean.UsersBean;
-
 import com.alibaba.fastjson.JSON;
 
-import dao.UserDao;
 import dao.UsersDao;
+import bean.Message;
 
-
-public class RegisterServlet extends HttpServlet {
+public class Insert_user_nicknameServlet extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public RegisterServlet() {
+	public Insert_user_nicknameServlet() {
 		super();
 	}
 
@@ -50,7 +45,6 @@ public class RegisterServlet extends HttpServlet {
 			throws ServletException, IOException {
 				doPost(request, response);
 	}
-
 	/**
 	 * The doPost method of the servlet. <br>
 	 *
@@ -63,29 +57,26 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;utf-8");
 		
 		PrintWriter out = response.getWriter();
 		
-		String reg_phonemb=request.getParameter("reg_phonemb");
-		String reg_bassword=request.getParameter("reg_bassword");
-		String reg_roleid=request.getParameter("reg_roleid");
-		
+		String uerid=request.getParameter("muser_id");
+		String nickname=request.getParameter("mnickname");
+		System.out.print(nickname);
 		Message me=new Message();
 		
-		
 		try {
-			if(UsersDao.user_regiest(reg_phonemb, reg_bassword,reg_roleid)){
-				
+			if(UsersDao.insert_user_nickname(uerid, nickname)){
 				me.setCode(200);
-				me.setMessage("注册成功！");
+				me.setMessage("保存成功！");
 				me.setData(null);
 			}else{
 				me.setCode(-11);//返回给前端程序代码
-				me.setMessage("注册失败，请重试。");//返回给用户看
+				me.setMessage("保存失败，请重试。");//返回给用户看
 				me.setData(null);
 				
 			}
@@ -94,9 +85,6 @@ public class RegisterServlet extends HttpServlet {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		
-
-		
 		
 	}
 

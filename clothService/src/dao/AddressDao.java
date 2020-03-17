@@ -7,18 +7,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.AddressBean;
 import bean.DBBean;
+import bean.GoodBean;
 import bean.UsersBean;
 
 
-public class UsersDao {
+public class AddressDao {
 	
 	static Connection connection=DBBean.getConn();  //创建连接
 	static PreparedStatement preparedStatement = null;     //定义表示SQL语句的变量，以参数形传入数据库操作语句来执行数据库操作
 	static ResultSet resultSet=null;                    
 	
 	//数据库操作
-public static List<UsersBean> selectAllUser() throws SQLException{
+/*public static List<UsersBean> selectAllUser() throws SQLException{
 		
 		List<UsersBean> usersBeans=new ArrayList<UsersBean>();
 		
@@ -42,8 +44,8 @@ public static List<UsersBean> selectAllUser() throws SQLException{
 			}
 		}
 		return usersBeans;
-	}
-public static boolean user_regiest(String reg_phonemb,String reg_bassword,String reg_roleid)throws SQLException  {
+	}*/
+/*public static boolean user_regiest(String reg_phonemb,String reg_bassword,String reg_roleid)throws SQLException  {
 	boolean flag=false;
 	
 	String sql = "insert into user(phone,password,role_id) values(?,?,?)";
@@ -56,33 +58,34 @@ public static boolean user_regiest(String reg_phonemb,String reg_bassword,String
 		flag=true;
 	}
 	return flag;		
-}
-public static UsersBean select_user_by_id() throws SQLException{
+}*/
+
+public static List<AddressBean> select_address_by_userid(String userid) throws SQLException{
 	
-	UsersBean usersBean=new UsersBean();
+	List<AddressBean> addressBeans=new ArrayList<AddressBean>();
 	
-	String sql="SELECT * FROM user WHERE uerid= 1";
+	String sql="SELECT * FROM address WHERE userid= ?";
 	preparedStatement=connection.prepareStatement(sql);
+	preparedStatement.setString(1, userid);
 	resultSet=preparedStatement.executeQuery();
 	
 	if(resultSet!=null){
 		while(resultSet.next()){
-			usersBean.setUerid(resultSet.getString("uerid"));
-			usersBean.setPhone(resultSet.getString("phone"));
-			usersBean.setPassword(resultSet.getString("password"));
-			usersBean.setNickname(resultSet.getString("nickname"));
-			usersBean.setSex(resultSet.getString("sex"));
-			usersBean.setImage(resultSet.getString("image"));
-			usersBean.setBalance(resultSet.getString("balance"));
-			usersBean.setId_number(resultSet.getString("id_number"));
-			usersBean.setRole_id(resultSet.getString("role_id"));			
-			//usersBeans.add(usersBean);	
+			AddressBean addressBean =new AddressBean();
+			addressBean.setAddress_id(resultSet.getString("address_id"));
+			addressBean.setAddress_detail(resultSet.getString("address_detail"));
+			addressBean.setAddress_total(resultSet.getString("address_total"));
+			addressBean.setContact_name(resultSet.getString("contact_name"));
+			addressBean.setContact_phone(resultSet.getString("contact_phone"));
+			addressBean.setCreator_phone(resultSet.getString("creator_phone"));
+			addressBean.setUserid(resultSet.getString("userid"));	
+			addressBeans.add(addressBean);
 		}
 	}
-	return usersBean;
+	return addressBeans;
 }
 
-public static boolean insert_user_nickname(String uerid,String nickname)throws SQLException  {
+/*public static boolean insert_user_nickname(String uerid,String nickname)throws SQLException  {
 	
 	boolean flag=false;
 	
@@ -95,9 +98,9 @@ public static boolean insert_user_nickname(String uerid,String nickname)throws S
 		flag=true;
 	}
 	return flag;		
-}
+}*/
 
-public static boolean insert_user_sex(String uerid,String sex)throws SQLException  {
+/*public static boolean insert_user_sex(String uerid,String sex)throws SQLException  {
 	
 	boolean flag=false;
 	
@@ -110,5 +113,5 @@ public static boolean insert_user_sex(String uerid,String sex)throws SQLExceptio
 		flag=true;
 	}
 	return flag;		
-}
+}*/
 }

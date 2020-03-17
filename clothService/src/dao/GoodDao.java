@@ -77,7 +77,7 @@ public class GoodDao {
 				goodBean.setGoods_name(resultSet.getString("goods_name"));
 				goodBean.setGood_img(resultSet.getString("good_img"));
 				goodBean.setGoods_price(resultSet.getString("goods_price"));
-				
+			
 				goodBean.setGoods_status(resultSet.getString("goods_status"));
 				goodBean.setGoods_yajin(resultSet.getString("goods_yajin"));
 				goodBean.setActivility_id(resultSet.getString("activility_id"));

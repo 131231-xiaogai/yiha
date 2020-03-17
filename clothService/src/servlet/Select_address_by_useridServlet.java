@@ -3,28 +3,29 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Message;
+import com.alibaba.fastjson.JSON;
+
+import dao.AddressDao;
+import dao.GoodDao;
+import dao.UserDao;
+import bean.AddressBean;
+import bean.GoodBean;
 import bean.TMessage;
 import bean.UsersBean;
 
-import com.alibaba.fastjson.JSON;
-
-import dao.UserDao;
-import dao.UsersDao;
-
-
-public class RegisterServlet extends HttpServlet {
+public class Select_address_by_useridServlet extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public RegisterServlet() {
+	public Select_address_by_useridServlet() {
 		super();
 	}
 
@@ -51,6 +52,7 @@ public class RegisterServlet extends HttpServlet {
 				doPost(request, response);
 	}
 
+
 	/**
 	 * The doPost method of the servlet. <br>
 	 *
@@ -68,35 +70,30 @@ public class RegisterServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;utf-8");
 		
-		PrintWriter out = response.getWriter();
+		String userid=request.getParameter("muserid");
 		
-		String reg_phonemb=request.getParameter("reg_phonemb");
-		String reg_bassword=request.getParameter("reg_bassword");
-		String reg_roleid=request.getParameter("reg_roleid");
+		TMessage  <List<AddressBean>> tMessage=new TMessage();
 		
-		Message me=new Message();
-		
+		PrintWriter printWriter=response.getWriter();
 		
 		try {
-			if(UsersDao.user_regiest(reg_phonemb, reg_bassword,reg_roleid)){
-				
-				me.setCode(200);
-				me.setMessage("注册成功！");
-				me.setData(null);
-			}else{
-				me.setCode(-11);//返回给前端程序代码
-				me.setMessage("注册失败，请重试。");//返回给用户看
-				me.setData(null);
-				
+			List<AddressBean> addressBeans=AddressDao.select_address_by_userid(userid);
+			
+				tMessage.setCode(200);
+				tMessage.setMessage("查询成功");
+				tMessage.setData(addressBeans);   //存放要返回给前端显示的数据
+			} catch (SQLException e) {
+				// TODO 自动生成的 catch 块
+				tMessage.setCode(-11);
+				tMessage.setMessage("查询失败");
+				tMessage.setData(null);
+				e.printStackTrace();
 			}
-			out.println(JSON.toJSONString(me));
-		} catch (SQLException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
+			
 		
+		printWriter.print(JSON.toJSONString(tMessage));
 
-		
+	
 		
 	}
 
