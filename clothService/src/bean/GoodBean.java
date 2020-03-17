@@ -17,6 +17,17 @@ public class GoodBean {
 	private String activility_id;
 	private String shop_id;
 	private String good_img;
+	private String type_activity_id;
+	
+	
+	
+	public String getType_activity_id() {
+		return type_activity_id;
+	}
+	public void setType_activity_id(String type_activity_id) {
+		this.type_activity_id = type_activity_id;
+	}
+	
 	public String getGoods_id() {
 		return goods_id;
 	}

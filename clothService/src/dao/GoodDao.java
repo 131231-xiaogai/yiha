@@ -43,6 +43,7 @@ public class GoodDao {
 				goodBean.setActivility_id(resultSet.getString("activility_id"));
 				goodBean.setShop_id(resultSet.getString("shop_id"));
 				goodBean.setGood_img(resultSet.getString("good_img"));
+				goodBean.setType_activity_id(resultSet.getString("type_activity_id"));
 				goodBeans.add(goodBean);
 				
 			}
@@ -77,26 +78,88 @@ public class GoodDao {
 				goodBean.setGoods_name(resultSet.getString("goods_name"));
 				goodBean.setGood_img(resultSet.getString("good_img"));
 				goodBean.setGoods_price(resultSet.getString("goods_price"));
-			
 				goodBean.setGoods_status(resultSet.getString("goods_status"));
 				goodBean.setGoods_yajin(resultSet.getString("goods_yajin"));
 				goodBean.setActivility_id(resultSet.getString("activility_id"));
 				goodBean.setClothing_length(resultSet.getString("Clothing_length"));
 				goodBean.setLeg_width(resultSet.getString("Leg_width"));
 				goodBean.setMeterial_id(resultSet.getString("meterial_id"));
-				
 				goodBean.setSleeve_length(resultSet.getString("Sleeve_length"));
 				goodBean.setShoulder_width(resultSet.getString("Shoulder_width"));
 				goodBean.setTrousers_length(resultSet.getString("trousers_length"));
 				goodBean.setSize(resultSet.getString("size"));
 				goodBean.setType_id(resultSet.getString("type_id"));
-				goodBean.setShop_id(resultSet.getString("shop_id"));
-				
-				
-				
+				goodBean.setShop_id(resultSet.getString("shop_id"));	
+				goodBean.setType_activity_id(resultSet.getString("type_activity_id"));
 			}			
-		}
-			
+		}	
 		return goodBean;	
 	}
+	
+	public static List<GoodBean> select_good_by_typeid(String type_id) throws SQLException {
+		List<GoodBean> goodBeans=new ArrayList<GoodBean>();
+		
+		String sql="SELECT * FROM goods WHERE type_id =?";
+		preparedStatement=connection.prepareStatement(sql);
+		preparedStatement.setString(1, type_id);
+		resultSet=preparedStatement.executeQuery();
+	
+		if(resultSet!=null){
+			while(resultSet.next()){
+				GoodBean goodBean=new GoodBean();
+				goodBean.setGoods_id(resultSet.getString("goods_id"));
+				goodBean.setGoods_name(resultSet.getString("goods_name"));
+				goodBean.setGoods_price(resultSet.getString("goods_price"));
+				goodBean.setGoods_status(resultSet.getString("goods_status"));
+				goodBean.setGoods_yajin(resultSet.getString("goods_yajin"));
+				goodBean.setClothing_length(resultSet.getString("Clothing_length"));
+				goodBean.setSleeve_length(resultSet.getString("Sleeve_length"));
+				goodBean.setShoulder_width(resultSet.getString("Shoulder_width"));
+				goodBean.setLeg_width(resultSet.getString("Leg_width"));
+				goodBean.setTrousers_length(resultSet.getString("trousers_length"));
+				goodBean.setMeterial_id(resultSet.getString("meterial_id"));
+				goodBean.setSize(resultSet.getString("size"));
+				goodBean.setActivility_id(resultSet.getString("activility_id"));
+				goodBean.setShop_id(resultSet.getString("shop_id"));
+				goodBean.setGood_img(resultSet.getString("good_img"));
+				goodBean.setType_activity_id(resultSet.getString("type_activity_id"));
+				goodBeans.add(goodBean);	
+			}
+		}
+		return goodBeans;
+	}
+	
+	public static List<GoodBean> select_good_by_type_activityid(String type_activity_id) throws SQLException {
+		List<GoodBean> goodBeans=new ArrayList<GoodBean>();
+		
+		String sql="SELECT * FROM goods WHERE type_activity_id =?";
+		preparedStatement=connection.prepareStatement(sql);
+		preparedStatement.setString(1, type_activity_id);
+		resultSet=preparedStatement.executeQuery();
+	
+		if(resultSet!=null){
+			while(resultSet.next()){
+				GoodBean goodBean=new GoodBean();
+				goodBean.setGoods_id(resultSet.getString("goods_id"));
+				goodBean.setGoods_name(resultSet.getString("goods_name"));
+				goodBean.setGoods_price(resultSet.getString("goods_price"));
+				goodBean.setGoods_status(resultSet.getString("goods_status"));
+				goodBean.setGoods_yajin(resultSet.getString("goods_yajin"));
+				goodBean.setClothing_length(resultSet.getString("Clothing_length"));
+				goodBean.setSleeve_length(resultSet.getString("Sleeve_length"));
+				goodBean.setShoulder_width(resultSet.getString("Shoulder_width"));
+				goodBean.setLeg_width(resultSet.getString("Leg_width"));
+				goodBean.setTrousers_length(resultSet.getString("trousers_length"));
+				goodBean.setMeterial_id(resultSet.getString("meterial_id"));
+				goodBean.setSize(resultSet.getString("size"));
+				goodBean.setActivility_id(resultSet.getString("activility_id"));
+				goodBean.setShop_id(resultSet.getString("shop_id"));
+				goodBean.setGood_img(resultSet.getString("good_img"));
+				goodBean.setType_id(resultSet.getString("type_id"));
+				goodBeans.add(goodBean);	
+			}
+		}
+		return goodBeans;
+	}
+	
 }

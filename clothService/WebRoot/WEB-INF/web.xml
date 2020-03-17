@@ -82,6 +82,20 @@
     <servlet-name>Insert_user_sexServlet</servlet-name>
     <servlet-class>servlet.Insert_user_sexServlet</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_good_by_typeidServlet</servlet-name>
+    <servlet-class>servlet.Select_good_by_typeidServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_good_by_type_activityidServlet</servlet-name>
+    <servlet-class>servlet.Select_good_by_type_activityidServlet</servlet-class>
+  </servlet>
+
+
   
 
 
@@ -140,6 +154,14 @@
    <servlet-mapping>
     <servlet-name>Insert_user_sexServlet</servlet-name>
     <url-pattern>/Insert_user_sexServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_good_by_typeidServlet</servlet-name>
+    <url-pattern>/Select_good_by_typeidServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_good_by_type_activityidServlet</servlet-name>
+    <url-pattern>/Select_good_by_type_activityidServlet</url-pattern>
   </servlet-mapping>
   
 
