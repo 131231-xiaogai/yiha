@@ -16,12 +16,12 @@ import dao.GoodDao;
 import bean.GoodBean;
 import bean.TMessage;
 
-public class SelectAllGoodServlet extends HttpServlet {
+public class Select_good_by_type_activityidServlet extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public SelectAllGoodServlet() {
+	public Select_good_by_type_activityidServlet() {
 		super();
 	}
 
@@ -47,7 +47,6 @@ public class SelectAllGoodServlet extends HttpServlet {
 			throws ServletException, IOException {
 				doPost(request, response);
 	}
-
 	/**
 	 * The doPost method of the servlet. <br>
 	 *
@@ -64,31 +63,33 @@ public class SelectAllGoodServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;utf-8");
-
 		
-		TMessage<List<GoodBean>> tMessage=new TMessage(); 
+		String type_activity_id=request.getParameter("mtype_activity_id");
+		
+		TMessage  <List<GoodBean>> tMessage=new TMessage();
 		
 		PrintWriter printWriter=response.getWriter();
+		
 		try {
-			List<GoodBean> goodBeans=GoodDao.selectAllGood();
+			List<GoodBean> goodBeans = GoodDao.select_good_by_type_activityid(type_activity_id);
 			for (int i = 0; i < goodBeans.size(); i++) {
 				goodBeans.get(i).setGood_img(request.getRequestURL()
 						.toString().replace(request.getServletPath(),"")+"/images/" + goodBeans.get(i).getGood_img());
 				
 			}
-			tMessage.setCode(200);
-			tMessage.setMessage("查询成功");
-			tMessage.setData(goodBeans);   //存放要返回给前端显示的数据
-		} catch (SQLException e) {
-			// TODO 自动生成的 catch 块
-			tMessage.setCode(-11);
-			tMessage.setMessage("查询失败");
-			tMessage.setData(null);
-			e.printStackTrace();
-		}
+				tMessage.setCode(200);
+				tMessage.setMessage("查询成功");
+				tMessage.setData(goodBeans);   //存放要返回给前端显示的数据
+			} catch (SQLException e) {
+				// TODO 自动生成的 catch 块
+				tMessage.setCode(-11);
+				tMessage.setMessage("查询失败");
+				tMessage.setData(null);
+				e.printStackTrace();
+			}
+			
 		
 		printWriter.print(JSON.toJSONString(tMessage));
-		
 	}
 
 	/**

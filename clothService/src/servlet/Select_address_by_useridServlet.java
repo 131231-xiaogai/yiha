@@ -12,16 +12,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSON;
 
+import dao.AddressDao;
 import dao.GoodDao;
+import dao.UserDao;
+import bean.AddressBean;
 import bean.GoodBean;
 import bean.TMessage;
+import bean.UsersBean;
 
-public class SelectAllGoodServlet extends HttpServlet {
+public class Select_address_by_useridServlet extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public SelectAllGoodServlet() {
+	public Select_address_by_useridServlet() {
 		super();
 	}
 
@@ -48,6 +52,7 @@ public class SelectAllGoodServlet extends HttpServlet {
 				doPost(request, response);
 	}
 
+
 	/**
 	 * The doPost method of the servlet. <br>
 	 *
@@ -64,30 +69,31 @@ public class SelectAllGoodServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;utf-8");
-
 		
-		TMessage<List<GoodBean>> tMessage=new TMessage(); 
+		String userid=request.getParameter("muserid");
+		
+		TMessage  <List<AddressBean>> tMessage=new TMessage();
 		
 		PrintWriter printWriter=response.getWriter();
+		
 		try {
-			List<GoodBean> goodBeans=GoodDao.selectAllGood();
-			for (int i = 0; i < goodBeans.size(); i++) {
-				goodBeans.get(i).setGood_img(request.getRequestURL()
-						.toString().replace(request.getServletPath(),"")+"/images/" + goodBeans.get(i).getGood_img());
-				
+			List<AddressBean> addressBeans=AddressDao.select_address_by_userid(userid);
+			
+				tMessage.setCode(200);
+				tMessage.setMessage("查询成功");
+				tMessage.setData(addressBeans);   //存放要返回给前端显示的数据
+			} catch (SQLException e) {
+				// TODO 自动生成的 catch 块
+				tMessage.setCode(-11);
+				tMessage.setMessage("查询失败");
+				tMessage.setData(null);
+				e.printStackTrace();
 			}
-			tMessage.setCode(200);
-			tMessage.setMessage("查询成功");
-			tMessage.setData(goodBeans);   //存放要返回给前端显示的数据
-		} catch (SQLException e) {
-			// TODO 自动生成的 catch 块
-			tMessage.setCode(-11);
-			tMessage.setMessage("查询失败");
-			tMessage.setData(null);
-			e.printStackTrace();
-		}
+			
 		
 		printWriter.print(JSON.toJSONString(tMessage));
+
+	
 		
 	}
 

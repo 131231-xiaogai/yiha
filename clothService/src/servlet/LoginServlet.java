@@ -62,7 +62,7 @@ public class LoginServlet extends HttpServlet {
 
 					message.setCode(200);
 
-					message.setData("token");
+					message.setData(null);
 
 					message.setMessage("登陆成功");
 

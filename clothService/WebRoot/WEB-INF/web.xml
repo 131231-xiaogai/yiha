@@ -13,16 +13,172 @@
     <servlet-name>SelectAllGoodServlet</servlet-name>
     <servlet-class>servlet.SelectAllGoodServlet</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SelectAllServlet</servlet-name>
+    <servlet-class>servlet.SelectAllServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SelectAllUserServelt</servlet-name>
+    <servlet-class>servlet.SelectAllUserServelt</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SelectAllUserServlet</servlet-name>
+    <servlet-class>servlet.SelectAllUserServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_user_by_idServlet</servlet-name>
+    <servlet-class>servlet.Select_user_by_idServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_user_by_phoneServlet</servlet-name>
+    <servlet-class>servlet.Select_user_by_phoneServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>servlet.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>PublicgoodServlet</servlet-name>
+    <servlet-class>servlet.PublicgoodServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_good_by_idServlet</servlet-name>
+    <servlet-class>servlet.Select_good_by_idServlet</servlet-class>
+  </servlet>
+   <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_address_by_useridServlet</servlet-name>
+    <servlet-class>servlet.Select_address_by_useridServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Insert_user_nicknameServlet</servlet-name>
+    <servlet-class>servlet.Insert_user_nicknameServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Insert_user_sexServlet</servlet-name>
+    <servlet-class>servlet.Insert_user_sexServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_good_by_typeidServlet</servlet-name>
+    <servlet-class>servlet.Select_good_by_typeidServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_good_by_type_activityidServlet</servlet-name>
+    <servlet-class>servlet.Select_good_by_type_activityidServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>add_to_shopcarServlet</servlet-name>
+    <servlet-class>servlet.add_to_shopcarServlet</servlet-class>
+  </servlet>
+
+
+
+  
+
+
+
+
+
+
+
+
 
 
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
+  
   <servlet-mapping>
     <servlet-name>SelectAllGoodServlet</servlet-name>
     <url-pattern>/SelectAllGoodServlet</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SelectAllUserServlet</servlet-name>
+    <url-pattern>/SelectAllUserServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>Select_user_by_idServlet</servlet-name>
+    <url-pattern>/Select_user_by_idServlet</url-pattern>
+  </servlet-mapping>
+  
+   <servlet-mapping>
+    <servlet-name>Select_address_by_useridServlet</servlet-name>
+    <url-pattern>/Select_address_by_useridServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>Select_user_by_phoneServlet</servlet-name>
+    <url-pattern>/Select_user_by_phoneServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/RegisterServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PublicgoodServlet</servlet-name>
+    <url-pattern>/PublicgoodServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_good_by_idServlet</servlet-name>
+    <url-pattern>/Select_good_by_idServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Insert_user_nicknameServlet</servlet-name>
+    <url-pattern>/Insert_user_nicknameServlet</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>Insert_user_sexServlet</servlet-name>
+    <url-pattern>/Insert_user_sexServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_good_by_typeidServlet</servlet-name>
+    <url-pattern>/Select_good_by_typeidServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_good_by_type_activityidServlet</servlet-name>
+    <url-pattern>/Select_good_by_type_activityidServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>add_to_shopcarServlet</servlet-name>
+    <url-pattern>/add_to_shopcarServlet</url-pattern>
+  </servlet-mapping>
+  
+
+  
+
+  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

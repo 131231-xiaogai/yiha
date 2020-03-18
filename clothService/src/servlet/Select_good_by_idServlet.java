@@ -3,7 +3,6 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,15 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.alibaba.fastjson.JSON;
 
 import dao.GoodDao;
+import dao.UserDao;
 import bean.GoodBean;
 import bean.TMessage;
+import bean.UsersBean;
 
-public class SelectAllGoodServlet extends HttpServlet {
+public class Select_good_by_idServlet extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public SelectAllGoodServlet() {
+	public Select_good_by_idServlet() {
 		super();
 	}
 
@@ -48,6 +49,7 @@ public class SelectAllGoodServlet extends HttpServlet {
 				doPost(request, response);
 	}
 
+
 	/**
 	 * The doPost method of the servlet. <br>
 	 *
@@ -64,21 +66,23 @@ public class SelectAllGoodServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;utf-8");
-
 		
-		TMessage<List<GoodBean>> tMessage=new TMessage(); 
+		String goods_id=request.getParameter("goods_id");
+		
+		TMessage  tMessage=new TMessage();
 		
 		PrintWriter printWriter=response.getWriter();
+		
 		try {
-			List<GoodBean> goodBeans=GoodDao.selectAllGood();
-			for (int i = 0; i < goodBeans.size(); i++) {
-				goodBeans.get(i).setGood_img(request.getRequestURL()
-						.toString().replace(request.getServletPath(),"")+"/images/" + goodBeans.get(i).getGood_img());
+			GoodBean goodBean=GoodDao.select_good_by_id(goods_id);
+			
+		/*	goodBean.setGood_img(request.getRequestURL()
+						.toString().replace(request.getServletPath(),"")+"/images/" + goodBean.getGood_img());
 				
-			}
+			*/
 			tMessage.setCode(200);
 			tMessage.setMessage("查询成功");
-			tMessage.setData(goodBeans);   //存放要返回给前端显示的数据
+			tMessage.setData(goodBean);   //存放要返回给前端显示的数据
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
 			tMessage.setCode(-11);
@@ -88,6 +92,8 @@ public class SelectAllGoodServlet extends HttpServlet {
 		}
 		
 		printWriter.print(JSON.toJSONString(tMessage));
+
+	
 		
 	}
 
