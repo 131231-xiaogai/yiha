@@ -65,7 +65,7 @@ public class Insert_user_sexServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		String uerid=request.getParameter("muser_id");
-		String sex=request.getParameter("msex");
+		String sex=new String( request.getParameter("msex").getBytes("ISO8859-1"),"UTF-8");
 		System.out.println(sex);
 		Message me=new Message();
 		

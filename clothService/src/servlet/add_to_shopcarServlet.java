@@ -3,6 +3,8 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,15 +13,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSON;
 
+import dao.Shoop_carDao;
 import dao.UsersDao;
 import bean.Message;
+import bean.Shooping_carBean;
 
-public class Insert_user_nicknameServlet extends HttpServlet {
+public class add_to_shopcarServlet extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public Insert_user_nicknameServlet() {
+	public add_to_shopcarServlet() {
 		super();
 	}
 
@@ -45,6 +49,7 @@ public class Insert_user_nicknameServlet extends HttpServlet {
 			throws ServletException, IOException {
 				doPost(request, response);
 	}
+
 	/**
 	 * The doPost method of the servlet. <br>
 	 *
@@ -64,13 +69,19 @@ public class Insert_user_nicknameServlet extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		
-		String uerid= request.getParameter("muser_id");
-		String nickname=new String(request.getParameter("mnickname").getBytes("ISO8859-1"),"UTF-8");
-		System.out.println(nickname);
+		String user_id= request.getParameter("goods_id");
+		String goods_id =request.getParameter("userid");
+		String good_number =request.getParameter("good_number");
+		System.out.println(user_id);
+		
 		Message me=new Message();
+		Shooping_carBean shooping_carBean =new Shooping_carBean();
 		
 		try {
-			if(UsersDao.insert_user_nickname(uerid, nickname)){
+			 Date date = new Date();
+             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+              shooping_carBean.setAdd_time(simpleDateFormat.format(date));
+			if(Shoop_carDao.add_to_shopcar(user_id, good_number,goods_id,shooping_carBean.add_time)){
 				me.setCode(200);
 				me.setMessage("保存成功！");
 				me.setData(null);
@@ -85,7 +96,6 @@ public class Insert_user_nicknameServlet extends HttpServlet {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		
 	}
 
 	/**

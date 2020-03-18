@@ -71,7 +71,7 @@ public class Select_good_by_type_activityidServlet extends HttpServlet {
 		PrintWriter printWriter=response.getWriter();
 		
 		try {
-			List<GoodBean> goodBeans = GoodDao.select_good_by_typeid(type_activity_id);
+			List<GoodBean> goodBeans = GoodDao.select_good_by_type_activityid(type_activity_id);
 			for (int i = 0; i < goodBeans.size(); i++) {
 				goodBeans.get(i).setGood_img(request.getRequestURL()
 						.toString().replace(request.getServletPath(),"")+"/images/" + goodBeans.get(i).getGood_img());
