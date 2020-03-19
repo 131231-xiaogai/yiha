@@ -20,45 +20,6 @@ public class AddressDao {
 	static ResultSet resultSet=null;                    
 	
 	//数据库操作
-/*public static List<UsersBean> selectAllUser() throws SQLException{
-		
-		List<UsersBean> usersBeans=new ArrayList<UsersBean>();
-		
-		String sql="select * from user";
-		preparedStatement=connection.prepareStatement(sql);
-		resultSet=preparedStatement.executeQuery();
-		
-		if(resultSet!=null){
-			while(resultSet.next()){
-				UsersBean usersBean=new UsersBean();
-				usersBean.setUerid(resultSet.getString("uerid"));
-				usersBean.setPhone(resultSet.getString("phone"));
-				usersBean.setPassword(resultSet.getString("password"));
-				usersBean.setNickname(resultSet.getString("nickname"));
-				usersBean.setSex(resultSet.getString("sex"));
-				usersBean.setImage(resultSet.getString("image"));
-				usersBean.setBalance(resultSet.getString("balance"));
-				usersBean.setId_number(resultSet.getString("id_number"));
-				usersBean.setRole_id(resultSet.getString("role_id"));
-				usersBeans.add(usersBean);
-			}
-		}
-		return usersBeans;
-	}*/
-/*public static boolean user_regiest(String reg_phonemb,String reg_bassword,String reg_roleid)throws SQLException  {
-	boolean flag=false;
-	
-	String sql = "insert into user(phone,password,role_id) values(?,?,?)";
-	preparedStatement=connection.prepareStatement(sql);
-	preparedStatement.setString(1, reg_phonemb);
-	preparedStatement.setString(2, reg_bassword);
-	preparedStatement.setString(3, reg_roleid);
-	int results =preparedStatement.executeUpdate();//更新
-	if(results ==1){
-		flag=true;
-	}
-	return flag;		
-}*/
 
 public static List<AddressBean> select_address_by_userid(String userid) throws SQLException{
 	
@@ -85,33 +46,45 @@ public static List<AddressBean> select_address_by_userid(String userid) throws S
 	return addressBeans;
 }
 
-/*public static boolean insert_user_nickname(String uerid,String nickname)throws SQLException  {
+public static boolean update_user_address(String address_id,String contact_name,String contact_phone,
+		String address_total,String address_detail )throws SQLException  {
 	
 	boolean flag=false;
-	
-	String sql = "UPDATE user SET nickname=? WHERE uerid=?";
+	String sql = "UPDATE address "
+			+ "SET contact_name=?,contact_phone=?,address_total=?,address_detail=? "
+			+ "WHERE address_id=?";
 	preparedStatement=connection.prepareStatement(sql);
-	preparedStatement.setString(1, nickname);
-	preparedStatement.setString(2, uerid);
+	preparedStatement.setString(1, contact_name);
+	preparedStatement.setString(2, contact_phone);
+	preparedStatement.setString(3, address_total);
+	preparedStatement.setString(4, address_detail);
+	preparedStatement.setString(5, address_id);
 	int results =preparedStatement.executeUpdate();//更新
 	if(results ==1){
 		flag=true;
 	}
 	return flag;		
-}*/
+}
 
-/*public static boolean insert_user_sex(String uerid,String sex)throws SQLException  {
+public static boolean insert_user_address(String contact_name,String contact_phone,
+		String address_total,String address_detail,String userid,String creator_phone )throws SQLException  {
 	
 	boolean flag=false;
-	
-	String sql = "UPDATE user SET sex=? WHERE uerid=?";
+	String sql = " insert into address(contact_name,contact_phone,address_total,address_detail,userid,creator_phone) values(?,?,?,?,?,?)";
+
 	preparedStatement=connection.prepareStatement(sql);
-	preparedStatement.setString(1, sex);
-	preparedStatement.setString(2, uerid);
+	preparedStatement.setString(1, contact_name);
+	preparedStatement.setString(2, contact_phone);
+	preparedStatement.setString(3, address_total);
+	preparedStatement.setString(4, address_detail);
+	preparedStatement.setString(5, userid);
+	preparedStatement.setString(6, creator_phone);
 	int results =preparedStatement.executeUpdate();//更新
 	if(results ==1){
 		flag=true;
 	}
 	return flag;		
-}*/
+}
+
+
 }
