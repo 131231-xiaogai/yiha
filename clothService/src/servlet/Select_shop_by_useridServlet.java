@@ -9,22 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Message;
+import com.alibaba.fastjson.JSON;
+
+import dao.ShopDao;
+import dao.UserDao;
+import bean.ShopBean;
 import bean.TMessage;
 import bean.UsersBean;
 
-import com.alibaba.fastjson.JSON;
-
-import dao.UserDao;
-import dao.UsersDao;
-
-
-public class RegisterServlet extends HttpServlet {
+public class Select_shop_by_useridServlet extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public RegisterServlet() {
+	public Select_shop_by_useridServlet() {
 		super();
 	}
 
@@ -63,39 +61,31 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;utf-8");
 		
-		PrintWriter out = response.getWriter();
+		String user_id=request.getParameter("user_id");
+		System.out.println(user_id);
+		TMessage  tMessage=new TMessage(); 
 		
-		String reg_phonemb=request.getParameter("reg_phonemb");
-		String reg_bassword=request.getParameter("reg_bassword");
-		String reg_roleid=request.getParameter("reg_roleid");
-		
-		Message me=new Message();
-		
+		PrintWriter printWriter=response.getWriter();
 		
 		try {
-			if(UsersDao.user_regiest(reg_phonemb, reg_bassword,reg_roleid)){
-				
-				me.setCode(200);
-				me.setMessage("注册成功！");
-				me.setData(null);
-			}else{
-				me.setCode(-11);//返回给前端程序代码
-				me.setMessage("注册失败，请重试。");//返回给用户看
-				me.setData(null);	
-			}
-			
+			ShopBean shopBean=ShopDao.select_shop_by_userid(user_id);
+			tMessage.setCode(200);
+			tMessage.setMessage("查询成功");
+			tMessage.setData(shopBean);   //存放要返回给前端显示的数据
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
+			tMessage.setCode(-11);
+			tMessage.setMessage("查询失败");
+			tMessage.setData(null);
 			e.printStackTrace();
 		}
 		
-		out.println(JSON.toJSONString(me));
-		
+		printWriter.print(JSON.toJSONString(tMessage));
 		
 	}
 

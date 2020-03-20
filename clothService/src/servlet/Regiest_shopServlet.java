@@ -3,28 +3,28 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Message;
-import bean.TMessage;
-import bean.UsersBean;
-
 import com.alibaba.fastjson.JSON;
 
-import dao.UserDao;
+import dao.ShopDao;
 import dao.UsersDao;
+import bean.Message;
+import bean.Shooping_carBean;
+import bean.ShopBean;
 
-
-public class RegisterServlet extends HttpServlet {
+public class Regiest_shopServlet extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public RegisterServlet() {
+	public Regiest_shopServlet() {
 		super();
 	}
 
@@ -63,25 +63,29 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;utf-8");
 		
 		PrintWriter out = response.getWriter();
-		
-		String reg_phonemb=request.getParameter("reg_phonemb");
-		String reg_bassword=request.getParameter("reg_bassword");
-		String reg_roleid=request.getParameter("reg_roleid");
-		
+		String user_id=request.getParameter("user_id");
+		String shop_name=new String(request.getParameter("shop_name").getBytes("ISO8859-1"),"UTF-8");
+		String shop_dresss= new String(request.getParameter("shop_dresss").getBytes("ISO8859-1"),"UTF-8");
+		String shop_phone=request.getParameter("shop_phone");
+	
+		System.out.println(shop_name);
+		System.out.println(shop_dresss);
 		Message me=new Message();
 		
+		ShopBean shopBean =new ShopBean();
 		
 		try {
-			if(UsersDao.user_regiest(reg_phonemb, reg_bassword,reg_roleid)){
-				
+			 Date date = new Date();
+             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+              shopBean.setShop_regist_time(simpleDateFormat.format(date));
+			if(ShopDao.regiest_shop(shop_name,shop_dresss,shop_phone,shopBean.getShop_regist_time(),user_id)){
 				me.setCode(200);
-				me.setMessage("注册成功！");
+				me.setMessage("成功注册店铺！");
 				me.setData(null);
 			}else{
 				me.setCode(-11);//返回给前端程序代码
@@ -93,10 +97,7 @@ public class RegisterServlet extends HttpServlet {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		
 		out.println(JSON.toJSONString(me));
-		
-		
 	}
 
 	/**
