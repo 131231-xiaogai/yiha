@@ -43,6 +43,7 @@ public class GoodDao {
 				goodBean.setActivility_id(resultSet.getString("activility_id"));
 				goodBean.setShop_id(resultSet.getString("shop_id"));
 				goodBean.setGood_img(resultSet.getString("good_img"));
+				goodBean.setShop_name(resultSet.getString("shop_name"));
 				goodBean.setType_activity_id(resultSet.getString("type_activity_id"));
 				goodBeans.add(goodBean);
 				
@@ -90,6 +91,7 @@ public class GoodDao {
 				goodBean.setSize(resultSet.getString("size"));
 				goodBean.setType_id(resultSet.getString("type_id"));
 				goodBean.setShop_id(resultSet.getString("shop_id"));	
+				goodBean.setShop_name(resultSet.getString("shop_name"));
 				goodBean.setType_activity_id(resultSet.getString("type_activity_id"));
 			}			
 		}	
@@ -123,6 +125,7 @@ public class GoodDao {
 				goodBean.setShop_id(resultSet.getString("shop_id"));
 				goodBean.setGood_img(resultSet.getString("good_img"));
 				goodBean.setType_activity_id(resultSet.getString("type_activity_id"));
+				goodBean.setShop_name(resultSet.getString("shop_name"));
 				goodBeans.add(goodBean);	
 			}
 		}
@@ -156,6 +159,7 @@ public class GoodDao {
 				goodBean.setShop_id(resultSet.getString("shop_id"));
 				goodBean.setGood_img(resultSet.getString("good_img"));
 				goodBean.setType_id(resultSet.getString("type_id"));
+				goodBean.setShop_name(resultSet.getString("shop_name"));
 				goodBeans.add(goodBean);	
 			}
 		}

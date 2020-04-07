@@ -86,5 +86,18 @@ public static boolean insert_user_address(String contact_name,String contact_pho
 	return flag;		
 }
 
+public static boolean delete_user_address(String address_id)throws SQLException {
+	
+	boolean flag=false;
+	String sql = "DELETE FROM address WHERE address_id=?";
+	preparedStatement=connection.prepareStatement(sql);
+	preparedStatement.setString(1, address_id);
+	int results =preparedStatement.executeUpdate();//¸üÐÂ
+	if(results ==1){
+		flag=true;
+	}
+	return flag;	
+	
+}
 
 }
