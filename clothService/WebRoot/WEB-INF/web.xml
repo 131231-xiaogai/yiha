@@ -136,6 +136,13 @@
     <servlet-name>Delete_user_addressServlet</servlet-name>
     <servlet-class>servlet.Delete_user_addressServlet</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_good_by_shopIdServlet</servlet-name>
+    <servlet-class>servlet.Select_good_by_shopIdServlet</servlet-class>
+  </servlet>
+
 
 
 
@@ -239,6 +246,10 @@
   <servlet-mapping>
     <servlet-name>Delete_user_addressServlet</servlet-name>
     <url-pattern>/Delete_user_addressServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_good_by_shopIdServlet</servlet-name>
+    <url-pattern>/Select_good_by_shopIdServlet</url-pattern>
   </servlet-mapping>
   
 
