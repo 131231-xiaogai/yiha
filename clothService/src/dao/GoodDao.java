@@ -45,6 +45,7 @@ public class GoodDao {
 				goodBean.setGood_img(resultSet.getString("good_img"));
 				goodBean.setShop_name(resultSet.getString("shop_name"));
 				goodBean.setType_activity_id(resultSet.getString("type_activity_id"));
+				goodBean.setGoods_number(resultSet.getString("goods_number"));
 				goodBeans.add(goodBean);
 				
 			}
@@ -93,6 +94,7 @@ public class GoodDao {
 				goodBean.setShop_id(resultSet.getString("shop_id"));	
 				goodBean.setShop_name(resultSet.getString("shop_name"));
 				goodBean.setType_activity_id(resultSet.getString("type_activity_id"));
+				goodBean.setGoods_number(resultSet.getString("goods_number"));
 			}			
 		}	
 		return goodBean;	
@@ -128,6 +130,7 @@ public class GoodDao {
 				goodBean.setGood_img(resultSet.getString("good_img"));
 				goodBean.setType_activity_id(resultSet.getString("type_activity_id"));
 				goodBean.setShop_name(resultSet.getString("shop_name"));
+				goodBean.setGoods_number(resultSet.getString("goods_number"));
 				goodBeans.add(goodBean);	
 			}
 		}
@@ -163,6 +166,7 @@ public class GoodDao {
 				goodBean.setGood_img(resultSet.getString("good_img"));
 				goodBean.setType_activity_id(resultSet.getString("type_activity_id"));
 				goodBean.setShop_name(resultSet.getString("shop_name"));
+				goodBean.setGoods_number(resultSet.getString("goods_number"));
 				goodBeans.add(goodBean);	
 			}
 		}
@@ -197,10 +201,25 @@ public class GoodDao {
 				goodBean.setGood_img(resultSet.getString("good_img"));
 				goodBean.setType_id(resultSet.getString("type_id"));
 				goodBean.setShop_name(resultSet.getString("shop_name"));
+				goodBean.setGoods_number(resultSet.getString("goods_number"));
 				goodBeans.add(goodBean);	
 			}
 		}
 		return goodBeans;
+	}
+	
+	public static boolean deleted_goods_by_goodsid(String goods_id)throws SQLException {
+		
+		boolean flag=false;
+		String sql = "DELETE FROM goods WHERE goods_id=?";
+		preparedStatement=connection.prepareStatement(sql);
+		preparedStatement.setString(1, goods_id);
+		int results =preparedStatement.executeUpdate();//¸üÐÂ
+		if(results ==1){
+			flag=true;
+		}
+		return flag;	
+		
 	}
 	
 }
