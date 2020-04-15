@@ -222,4 +222,29 @@ public class GoodDao {
 		
 	}
 	
+
+	public static boolean update_good_by_goodId(String goods_id,String goods_name,String goods_price,
+			String goods_yajin,String goods_number,String type_id )throws SQLException  {
+		
+		boolean flag=false;
+		String sql = "UPDATE goods "
+				+ "SET goods_name=?,goods_price=?,goods_yajin=?,goods_number=?,type_id=? "
+				+ "WHERE goods_id=?";
+		
+		preparedStatement=connection.prepareStatement(sql);
+		
+		preparedStatement.setString(1, goods_name);
+		preparedStatement.setString(2, goods_price);
+		preparedStatement.setString(3, goods_yajin);
+		preparedStatement.setString(4, goods_number);
+		preparedStatement.setString(5, type_id);
+		preparedStatement.setString(6, goods_id);
+		
+		int results =preparedStatement.executeUpdate();//¸üÐÂ
+		if(results ==1){
+			flag=true;
+		}
+		return flag;		
+	}
+	
 }
