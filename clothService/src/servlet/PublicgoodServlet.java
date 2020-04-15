@@ -71,12 +71,23 @@ public class PublicgoodServlet extends HttpServlet {
         if (items != null) {
             while (it.hasNext()) {
                 FileItem tempitemFileItem = it.next();
-                String itemNameString = tempitemFileItem.getFieldName();
-                if (tempitemFileItem.isFormField()) {//是否是文本字段
+                String itemNameString = tempitemFileItem.getFieldName();//项名称字符串
+                if (tempitemFileItem.isFormField()) {
+                	//是否是文本字段
                     String content = tempitemFileItem.getString("utf-8");
-                    if ("good_title".equals(itemNameString)) {
+                    if ("good_name".equals(itemNameString)) {
                     	goodBean.setGoods_name(content);
-                    } 
+                    }else if ("goods_price".equals(itemNameString)) {
+						goodBean.setGoods_price(content);
+					}else if ("goods_yajin".equals(itemNameString)) {
+						goodBean.setGoods_yajin(content);	
+					}else if ("goods_type_id".equals(itemNameString)) {
+						goodBean.setType_id(content);	
+					} else if ("shop_id".equals(itemNameString)) {
+						goodBean.setShop_id(content);	
+					}
+                    
+                    
                 } else {
                     File tempFile = new File(request.getSession().getServletContext().getRealPath("/") + "images" + File.separator
                             + new File(System.currentTimeMillis() + "_" + tempitemFileItem.getName()).getName());
@@ -98,7 +109,7 @@ public class PublicgoodServlet extends HttpServlet {
 //            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //            feedBackBean.setFeedback_time(simpleDateFormat.format(date));
             GoodDao goodDao = new GoodDao();
-            boolean addFlag = goodDao.addgood(goodBean.getGood_img());
+            boolean addFlag = GoodDao.addgood(goodBean.getGood_img(),goodBean.getGoods_name(),goodBean.getGoods_price(),goodBean.getGoods_yajin(),goodBean.getType_id(),goodBean.getShop_id(),goodBean.getShop_name());
             if (addFlag) {
             	message.setCode(200);
                 message.setData(null);

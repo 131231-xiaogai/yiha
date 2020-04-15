@@ -53,12 +53,19 @@ public class GoodDao {
 		return goodBeans;
 	}
 
-	public static boolean addgood(String image)throws SQLException {
+	public static boolean addgood(String image,String goods_name,String goods_price,String goods_yajin,String type_id,String shop_id,String shop_name)throws SQLException {
 		Boolean flag = false;
-		String sql = "INSERT INTO `goods` (`good_img`) VALUES (?)";
+		String sql = "INSERT INTO goods (good_img,goods_name,goods_price,goods_yajin,type_id,shop_id,shop_name) VALUES (?,?,?,?,?,?,?)";
+		//
 		preparedStatement=connection.prepareStatement(sql);
 		
 		preparedStatement.setString(1, image);
+		preparedStatement.setString(2, goods_name);
+		preparedStatement.setString(3, goods_price);
+		preparedStatement.setString(4, goods_yajin);
+		preparedStatement.setString(5, type_id);
+		preparedStatement.setString(6, shop_id);
+		preparedStatement.setString(7, shop_name);
 		
 		int row = preparedStatement.executeUpdate();
 		if (row>0) {
