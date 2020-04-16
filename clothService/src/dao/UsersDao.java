@@ -18,12 +18,13 @@ public class UsersDao {
 	static ResultSet resultSet=null;                    
 	
 	//Êý¾Ý¿â²Ù×÷
-public static List<UsersBean> selectAllUser() throws SQLException{
+public static List<UsersBean> selectAllUser(String role_id) throws SQLException{
 		
 		List<UsersBean> usersBeans=new ArrayList<UsersBean>();
 		
-		String sql="select * from user";
+		String sql="select * from user WHERE role_id=?";
 		preparedStatement=connection.prepareStatement(sql);
+		preparedStatement.setString(1, role_id);
 		resultSet=preparedStatement.executeQuery();
 		
 		if(resultSet!=null){

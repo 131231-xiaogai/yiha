@@ -67,12 +67,16 @@ public class SelectAllUserServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;utf-8");
+		
+		String role_id=request.getParameter("role_id");
+		System.out.println(role_id);
 
 		TMessage<List<UsersBean>> tMessage=new TMessage(); 
 		
+		
 		PrintWriter printWriter=response.getWriter();
 		try {
-			List<UsersBean> usersBeans=UsersDao.selectAllUser();
+			List<UsersBean> usersBeans=UsersDao.selectAllUser(role_id);
 			tMessage.setCode(200);
 			tMessage.setMessage("查询成功");
 			tMessage.setData(usersBeans);   //存放要返回给前端显示的数据
