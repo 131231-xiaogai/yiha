@@ -69,7 +69,7 @@ public class SelectAllUserServlet extends HttpServlet {
 		response.setContentType("text/html;utf-8");
 		
 		String role_id=request.getParameter("role_id");
-		System.out.println(role_id);
+		System.out.println("查询的用户角色为"+role_id);
 
 		TMessage<List<UsersBean>> tMessage=new TMessage(); 
 		
