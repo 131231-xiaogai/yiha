@@ -3,27 +3,25 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Message;
+
 import com.alibaba.fastjson.JSON;
 
-import dao.Shoop_carDao;
-import dao.UsersDao;
-import bean.Message;
-import bean.Shooping_carBean;
+import dao.AddressDao;
+import dao.GoodDao;
 
-public class add_to_shopcarServlet extends HttpServlet {
+public class Deleted_goods_by_goodsIdServlet extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public add_to_shopcarServlet() {
+	public Deleted_goods_by_goodsIdServlet() {
 		super();
 	}
 
@@ -69,37 +67,21 @@ public class add_to_shopcarServlet extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		
-		String user_id= request.getParameter("user_id");
-		String goods_id =request.getParameter("goods_id");
-		String good_number =request.getParameter("good_number");
-		String shop_id= request.getParameter("shop_id");
-		
-		String good_name=new String( request.getParameter("good_name").getBytes("ISO8859-1"),"utf-8");
-		String good_price= request.getParameter("good_price");
-		String good_img= request.getParameter("good_img");
-		
-		String shop_name=new String( request.getParameter("shop_name").getBytes("ISO8859-1"),"utf-8");
-		String cancle_time= request.getParameter("cancle_time");
-		String sumbit_time= request.getParameter("sumbit_time");
-		
-		System.out.println(user_id);
+		String goods_id= request.getParameter("goods_id");
+		System.out.println(goods_id);
 		
 		Message me=new Message();
-		Shooping_carBean shooping_carBean =new Shooping_carBean();
 		
 		try {
-			 Date date = new Date();
-             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-              shooping_carBean.setAdd_time(simpleDateFormat.format(date));
-			if(Shoop_carDao.add_to_shopcar(user_id,good_number,goods_id,shop_id,good_name,
-					good_price,good_img,shop_name,shooping_carBean.getAdd_time(),cancle_time,sumbit_time)){
+			if(GoodDao.deleted_goods_by_goodsid(goods_id)){
 				me.setCode(200);
-				me.setMessage("保存成功！");
+				me.setMessage("删除成功！");
 				me.setData(null);
 			}else{
 				me.setCode(-11);//返回给前端程序代码
-				me.setMessage("保存失败，请重试。");//返回给用户看
-				me.setData(null);	
+				me.setMessage("删除失败，请重试。");//返回给用户看
+				me.setData(null);
+			
 			}
 			
 		} catch (SQLException e) {

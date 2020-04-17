@@ -80,11 +80,12 @@ public class Insert_user_nicknameServlet extends HttpServlet {
 				me.setData(null);
 				
 			}
-			out.println(JSON.toJSONString(me));
+			
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
+		out.println(JSON.toJSONString(me));
 		
 	}
 

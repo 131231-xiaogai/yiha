@@ -43,6 +43,7 @@ public class UserDao {
 		if (resultSet != null) {
 			if (resultSet.next()) {
 				usersBean =new UsersBean();
+				usersBean.setPhone(resultSet.getString("phone"));
 				usersBean.setBalance(resultSet.getString("balance"));
 				usersBean.setId_number(resultSet.getString("id_number"));
 				usersBean.setImage(resultSet.getString("image"));

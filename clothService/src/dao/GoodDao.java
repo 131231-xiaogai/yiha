@@ -43,7 +43,9 @@ public class GoodDao {
 				goodBean.setActivility_id(resultSet.getString("activility_id"));
 				goodBean.setShop_id(resultSet.getString("shop_id"));
 				goodBean.setGood_img(resultSet.getString("good_img"));
+				goodBean.setShop_name(resultSet.getString("shop_name"));
 				goodBean.setType_activity_id(resultSet.getString("type_activity_id"));
+				goodBean.setGoods_number(resultSet.getString("goods_number"));
 				goodBeans.add(goodBean);
 				
 			}
@@ -51,12 +53,19 @@ public class GoodDao {
 		return goodBeans;
 	}
 
-	public static boolean addgood(String image)throws SQLException {
+	public static boolean addgood(String image,String goods_name,String goods_price,String goods_yajin,String type_id,String shop_id,String shop_name)throws SQLException {
 		Boolean flag = false;
-		String sql = "INSERT INTO `goods` (`good_img`) VALUES (?)";
+		String sql = "INSERT INTO goods (good_img,goods_name,goods_price,goods_yajin,type_id,shop_id,shop_name) VALUES (?,?,?,?,?,?,?)";
+		//
 		preparedStatement=connection.prepareStatement(sql);
 		
 		preparedStatement.setString(1, image);
+		preparedStatement.setString(2, goods_name);
+		preparedStatement.setString(3, goods_price);
+		preparedStatement.setString(4, goods_yajin);
+		preparedStatement.setString(5, type_id);
+		preparedStatement.setString(6, shop_id);
+		preparedStatement.setString(7, shop_name);
 		
 		int row = preparedStatement.executeUpdate();
 		if (row>0) {
@@ -90,10 +99,50 @@ public class GoodDao {
 				goodBean.setSize(resultSet.getString("size"));
 				goodBean.setType_id(resultSet.getString("type_id"));
 				goodBean.setShop_id(resultSet.getString("shop_id"));	
+				goodBean.setShop_name(resultSet.getString("shop_name"));
 				goodBean.setType_activity_id(resultSet.getString("type_activity_id"));
+				goodBean.setGoods_number(resultSet.getString("goods_number"));
 			}			
 		}	
 		return goodBean;	
+	}
+	//select_good_by_shopid
+	
+	public static List<GoodBean> select_good_by_shopid(String shop_id) throws SQLException {
+		List<GoodBean> goodBeans=new ArrayList<GoodBean>();
+		
+		String sql="SELECT * FROM goods WHERE shop_id =?";
+		preparedStatement=connection.prepareStatement(sql);
+		preparedStatement.setString(1, shop_id);
+		resultSet=preparedStatement.executeQuery();
+		
+
+		if(resultSet!=null){
+			while(resultSet.next()){
+				GoodBean goodBean=new GoodBean();
+				goodBean.setGoods_id(resultSet.getString("goods_id"));
+				goodBean.setGoods_name(resultSet.getString("goods_name"));
+				goodBean.setGoods_price(resultSet.getString("goods_price"));
+				goodBean.setGoods_status(resultSet.getString("goods_status"));
+				goodBean.setGoods_yajin(resultSet.getString("goods_yajin"));
+				goodBean.setClothing_length(resultSet.getString("Clothing_length"));
+				goodBean.setSleeve_length(resultSet.getString("Sleeve_length"));
+				goodBean.setShoulder_width(resultSet.getString("Shoulder_width"));
+				goodBean.setLeg_width(resultSet.getString("Leg_width"));
+				goodBean.setTrousers_length(resultSet.getString("trousers_length"));
+				goodBean.setMeterial_id(resultSet.getString("meterial_id"));
+				goodBean.setSize(resultSet.getString("size"));
+				goodBean.setActivility_id(resultSet.getString("activility_id"));
+				//goodBean.setShop_id(resultSet.getString("shop_id"));
+				goodBean.setGood_img(resultSet.getString("good_img"));
+				goodBean.setType_activity_id(resultSet.getString("type_activity_id"));
+				goodBean.setShop_name(resultSet.getString("shop_name"));
+				goodBean.setGoods_number(resultSet.getString("goods_number"));
+				goodBeans.add(goodBean);	
+			}
+		}
+		return goodBeans;
+	
 	}
 	
 	public static List<GoodBean> select_good_by_typeid(String type_id) throws SQLException {
@@ -123,6 +172,8 @@ public class GoodDao {
 				goodBean.setShop_id(resultSet.getString("shop_id"));
 				goodBean.setGood_img(resultSet.getString("good_img"));
 				goodBean.setType_activity_id(resultSet.getString("type_activity_id"));
+				goodBean.setShop_name(resultSet.getString("shop_name"));
+				goodBean.setGoods_number(resultSet.getString("goods_number"));
 				goodBeans.add(goodBean);	
 			}
 		}
@@ -156,10 +207,51 @@ public class GoodDao {
 				goodBean.setShop_id(resultSet.getString("shop_id"));
 				goodBean.setGood_img(resultSet.getString("good_img"));
 				goodBean.setType_id(resultSet.getString("type_id"));
+				goodBean.setShop_name(resultSet.getString("shop_name"));
+				goodBean.setGoods_number(resultSet.getString("goods_number"));
 				goodBeans.add(goodBean);	
 			}
 		}
 		return goodBeans;
+	}
+	
+	public static boolean deleted_goods_by_goodsid(String goods_id)throws SQLException {
+		
+		boolean flag=false;
+		String sql = "DELETE FROM goods WHERE goods_id=?";
+		preparedStatement=connection.prepareStatement(sql);
+		preparedStatement.setString(1, goods_id);
+		int results =preparedStatement.executeUpdate();//更新
+		if(results ==1){
+			flag=true;
+		}
+		return flag;	
+		
+	}
+	
+
+	public static boolean update_good_by_goodId(String goods_id,String goods_name,String goods_price,
+			String goods_yajin,String goods_number,String type_id )throws SQLException  {
+		
+		boolean flag=false;
+		String sql = "UPDATE goods "
+				+ "SET goods_name=?,goods_price=?,goods_yajin=?,goods_number=?,type_id=? "
+				+ "WHERE goods_id=?";
+		
+		preparedStatement=connection.prepareStatement(sql);
+		
+		preparedStatement.setString(1, goods_name);
+		preparedStatement.setString(2, goods_price);
+		preparedStatement.setString(3, goods_yajin);
+		preparedStatement.setString(4, goods_number);
+		preparedStatement.setString(5, type_id);
+		preparedStatement.setString(6, goods_id);
+		
+		int results =preparedStatement.executeUpdate();//更新
+		if(results ==1){
+			flag=true;
+		}
+		return flag;		
 	}
 	
 }

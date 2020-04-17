@@ -86,16 +86,15 @@ public class RegisterServlet extends HttpServlet {
 			}else{
 				me.setCode(-11);//返回给前端程序代码
 				me.setMessage("注册失败，请重试。");//返回给用户看
-				me.setData(null);
-				
+				me.setData(null);	
 			}
-			out.println(JSON.toJSONString(me));
+			
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
 		
-
+		out.println(JSON.toJSONString(me));
 		
 		
 	}

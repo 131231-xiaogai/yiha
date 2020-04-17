@@ -37,7 +37,6 @@
     <servlet-name>Select_user_by_idServlet</servlet-name>
     <servlet-class>servlet.Select_user_by_idServlet</servlet-class>
   </servlet>
-  
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
@@ -56,20 +55,18 @@
     <servlet-name>PublicgoodServlet</servlet-name>
     <servlet-class>servlet.PublicgoodServlet</servlet-class>
   </servlet>
-  
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>Select_good_by_idServlet</servlet-name>
     <servlet-class>servlet.Select_good_by_idServlet</servlet-class>
   </servlet>
-   <servlet>
+  <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>Select_address_by_useridServlet</servlet-name>
     <servlet-class>servlet.Select_address_by_useridServlet</servlet-class>
   </servlet>
-  
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
@@ -100,25 +97,68 @@
     <servlet-name>add_to_shopcarServlet</servlet-name>
     <servlet-class>servlet.add_to_shopcarServlet</servlet-class>
   </servlet>
-
-
-
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Insert_user_addressServlet</servlet-name>
+    <servlet-class>servlet.Insert_user_addressServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Update_user_addressServlet</servlet-name>
+    <servlet-class>servlet.Update_user_addressServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_shopcar_by_useridServlet</servlet-name>
+    <servlet-class>servlet.Select_shopcar_by_useridServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_shop_by_useridServlet</servlet-name>
+    <servlet-class>servlet.Select_shop_by_useridServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Regiest_shopServlet</servlet-name>
+    <servlet-class>servlet.Regiest_shopServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Delete_user_addressServlet</servlet-name>
+    <servlet-class>servlet.Delete_user_addressServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_good_by_shopIdServlet</servlet-name>
+    <servlet-class>servlet.Select_good_by_shopIdServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Deleted_goods_by_goodsIdServlet</servlet-name>
+    <servlet-class>servlet.Deleted_goods_by_goodsIdServlet</servlet-class>
+  </servlet>
   
-
-
-
-
-
-
-
-
-
-
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Update_good_by_goodIdServlet</servlet-name>
+    <servlet-class>servlet.Update_good_by_goodIdServlet</servlet-class>
+  </servlet>
+  
+  
+  
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
-  
   <servlet-mapping>
     <servlet-name>SelectAllGoodServlet</servlet-name>
     <url-pattern>/SelectAllGoodServlet</url-pattern>
@@ -127,17 +167,14 @@
     <servlet-name>SelectAllUserServlet</servlet-name>
     <url-pattern>/SelectAllUserServlet</url-pattern>
   </servlet-mapping>
-  
   <servlet-mapping>
     <servlet-name>Select_user_by_idServlet</servlet-name>
     <url-pattern>/Select_user_by_idServlet</url-pattern>
   </servlet-mapping>
-  
-   <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>Select_address_by_useridServlet</servlet-name>
     <url-pattern>/Select_address_by_useridServlet</url-pattern>
   </servlet-mapping>
-  
   <servlet-mapping>
     <servlet-name>Select_user_by_phoneServlet</servlet-name>
     <url-pattern>/Select_user_by_phoneServlet</url-pattern>
@@ -158,7 +195,7 @@
     <servlet-name>Insert_user_nicknameServlet</servlet-name>
     <url-pattern>/Insert_user_nicknameServlet</url-pattern>
   </servlet-mapping>
-   <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>Insert_user_sexServlet</servlet-name>
     <url-pattern>/Insert_user_sexServlet</url-pattern>
   </servlet-mapping>
@@ -174,10 +211,45 @@
     <servlet-name>add_to_shopcarServlet</servlet-name>
     <url-pattern>/add_to_shopcarServlet</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Insert_user_addressServlet</servlet-name>
+    <url-pattern>/Insert_user_addressServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Update_user_addressServlet</servlet-name>
+    <url-pattern>/Update_user_addressServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_shopcar_by_useridServlet</servlet-name>
+    <url-pattern>/Select_shopcar_by_useridServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_shop_by_useridServlet</servlet-name>
+    <url-pattern>/Select_shop_by_useridServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Regiest_shopServlet</servlet-name>
+    <url-pattern>/Regiest_shopServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Delete_user_addressServlet</servlet-name>
+    <url-pattern>/Delete_user_addressServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_good_by_shopIdServlet</servlet-name>
+    <url-pattern>/Select_good_by_shopIdServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Deleted_goods_by_goodsIdServlet</servlet-name>
+    <url-pattern>/Deleted_goods_by_goodsIdServlet</url-pattern>
+  </servlet-mapping>
   
-
   
-
+  <servlet-mapping>
+    <servlet-name>Update_good_by_goodIdServlet</servlet-name>
+    <url-pattern>/Update_good_by_goodIdServlet</url-pattern>
+  </servlet-mapping>
+  
   
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

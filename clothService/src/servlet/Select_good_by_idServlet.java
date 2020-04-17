@@ -76,10 +76,10 @@ public class Select_good_by_idServlet extends HttpServlet {
 		try {
 			GoodBean goodBean=GoodDao.select_good_by_id(goods_id);
 			
-		/*	goodBean.setGood_img(request.getRequestURL()
+	     	goodBean.setGood_img(request.getRequestURL()
 						.toString().replace(request.getServletPath(),"")+"/images/" + goodBean.getGood_img());
 				
-			*/
+			
 			tMessage.setCode(200);
 			tMessage.setMessage("查询成功");
 			tMessage.setData(goodBean);   //存放要返回给前端显示的数据
