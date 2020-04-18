@@ -112,4 +112,23 @@ public static boolean insert_user_sex(String uerid,String sex)throws SQLExceptio
 	}
 	return flag;		
 }
+
+//Delete_user_by_userIDServlet
+
+public static boolean deleted_user_byId(String uerid)throws SQLException {
+	
+	boolean flag=false;
+	String sql = "DELETE FROM user WHERE uerid=?";
+	preparedStatement=connection.prepareStatement(sql);
+	preparedStatement.setString(1, uerid);
+	int results =preparedStatement.executeUpdate();//¸üÐÂ
+	if(results ==1){
+		flag=true;
+	}
+	return flag;
+	
+	
+}
+
+
 }
