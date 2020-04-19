@@ -58,12 +58,13 @@ public static boolean user_regiest(String reg_phonemb,String reg_bassword,String
 	}
 	return flag;		
 }
-public static UsersBean select_user_by_id() throws SQLException{
+public static UsersBean select_user_by_id(String uerid) throws SQLException{
 	
 	UsersBean usersBean=new UsersBean();
 	
-	String sql="SELECT * FROM user WHERE uerid= 1";
+	String sql="SELECT * FROM user WHERE uerid= ?";
 	preparedStatement=connection.prepareStatement(sql);
+	preparedStatement.setString(1, uerid);
 	resultSet=preparedStatement.executeQuery();
 	
 	if(resultSet!=null){

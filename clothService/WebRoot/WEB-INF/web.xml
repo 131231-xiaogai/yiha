@@ -158,6 +158,20 @@
     <servlet-name>Delete_user_by_userIDServlet</servlet-name>
     <servlet-class>servlet.Delete_user_by_userIDServlet</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Add_event</servlet-name>
+    <servlet-class>servlet.Add_event</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_event_byUserIDServlet</servlet-name>
+    <servlet-class>servlet.Select_event_byUserIDServlet</servlet-class>
+  </servlet>
+
+
   
 
   
@@ -260,6 +274,14 @@
   <servlet-mapping>
     <servlet-name>Update_good_by_goodIdServlet</servlet-name>
     <url-pattern>/Update_good_by_goodIdServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Add_event</servlet-name>
+    <url-pattern>/Add_event</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_event_byUserIDServlet</servlet-name>
+    <url-pattern>/Select_event_byUserIDServlet</url-pattern>
   </servlet-mapping>
   
   

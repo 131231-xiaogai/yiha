@@ -10,19 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.AddressBean;
+import bean.EventBean;
 import bean.TMessage;
-import bean.UsersBean;
 
 import com.alibaba.fastjson.JSON;
 
-import dao.UsersDao;
+import dao.AddressDao;
+import dao.EventDao;
 
-public class Select_user_by_idServlet extends HttpServlet {
+public class Select_event_byUserIDServlet extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public Select_user_by_idServlet() {
+	public Select_event_byUserIDServlet() {
 		super();
 	}
 
@@ -65,25 +67,33 @@ public class Select_user_by_idServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;utf-8");
 		
-		String uerid= request.getParameter("muser_id");
-
-		TMessage  tMessage=new TMessage(); 
+		String user_id=request.getParameter("user_id");
+		
+		System.out.println("查 询 事 件 记 录 的 用  户 编 号 为"+user_id);
+		
+		TMessage  <List<EventBean>> tMessage=new TMessage();
 		
 		PrintWriter printWriter=response.getWriter();
+		
 		try {
-			UsersBean usersBean=UsersDao.select_user_by_id(uerid);
-			tMessage.setCode(200);
-			tMessage.setMessage("查询成功");
-			tMessage.setData(usersBean);   //存放要返回给前端显示的数据
-		} catch (SQLException e) {
-			// TODO 自动生成的 catch 块
-			tMessage.setCode(-11);
-			tMessage.setMessage("查询失败");
-			tMessage.setData(null);
-			e.printStackTrace();
-		}
+			List<EventBean> eventBeans=EventDao.select_event_byUserID(user_id);
+			
+				tMessage.setCode(200);
+				tMessage.setMessage("查询成功");
+				tMessage.setData(eventBeans);   //存放要返回给前端显示的数据
+				System.out.println("查 询 的 事 件 记 录 为"+eventBeans);
+			} catch (SQLException e) {
+				// TODO 自动生成的 catch 块
+				tMessage.setCode(-11);
+				tMessage.setMessage("查询失败");
+				tMessage.setData(null);
+				e.printStackTrace();
+			}
+			
 		
 		printWriter.print(JSON.toJSONString(tMessage));
+
+	
 		
 	}
 
