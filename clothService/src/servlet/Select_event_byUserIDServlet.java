@@ -77,11 +77,11 @@ public class Select_event_byUserIDServlet extends HttpServlet {
 		
 		try {
 			List<EventBean> eventBeans=EventDao.select_event_byUserID(user_id);
-			
+		
 				tMessage.setCode(200);
 				tMessage.setMessage("查询成功");
 				tMessage.setData(eventBeans);   //存放要返回给前端显示的数据
-				System.out.println("查 询 的 事 件 记 录 为"+eventBeans);
+				
 			} catch (SQLException e) {
 				// TODO 自动生成的 catch 块
 				tMessage.setCode(-11);

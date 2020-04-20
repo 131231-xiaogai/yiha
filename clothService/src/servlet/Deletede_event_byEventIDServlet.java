@@ -9,19 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.alibaba.fastjson.JSON;
-
-import dao.AddressDao;
-import dao.GoodDao;
-import dao.UsersDao;
 import bean.Message;
 
-public class Update_good_by_goodIdServlet extends HttpServlet {
+import com.alibaba.fastjson.JSON;
+
+import dao.EventDao;
+import dao.UsersDao;
+
+public class Deletede_event_byEventIDServlet extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public Update_good_by_goodIdServlet() {
+	public Deletede_event_byEventIDServlet() {
 		super();
 	}
 
@@ -67,23 +67,22 @@ public class Update_good_by_goodIdServlet extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		
-		String goods_id= request.getParameter("goods_id");
-		String goods_name=new String(request.getParameter("goods_name").getBytes("ISO8859-1"),"UTF-8");
-		String goods_price= request.getParameter("goods_price");
-		String goods_yajin=request.getParameter("goods_yajin");
-		String goods_number=request.getParameter("goods_number");
-		String type_id= request.getParameter("goods_type");
-		System.out.println(goods_name);
+		String event_id= request.getParameter("event_id");
+		System.out.println("要 删 除 的 事 件 编 号 为："+event_id);
+		System.out.println("----------------------------------");
+		
 		Message me=new Message();
+		
 		try {
-			if(GoodDao.update_good_by_goodId(goods_id, goods_name,goods_price,goods_yajin,goods_number,type_id)){
+			if(EventDao.deletede_event_byEventID(event_id)){
 				me.setCode(200);
-				me.setMessage("保存成功！");
+				me.setMessage("删除成功！");
 				me.setData(null);
 			}else{
 				me.setCode(-11);//返回给前端程序代码
-				me.setMessage("保存失败，请重试。");//返回给用户看
+				me.setMessage("删除失败，请重试。");//返回给用户看
 				me.setData(null);
+			
 			}
 			
 		} catch (SQLException e) {
@@ -91,8 +90,8 @@ public class Update_good_by_goodIdServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		out.println(JSON.toJSONString(me));
-		
 	}
+
 
 	/**
 	 * Initialization of the servlet. <br>

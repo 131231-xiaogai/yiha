@@ -71,32 +71,27 @@ public class Add_event extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		
-		String user_id =request.getParameter("event_date");
-		
-		String evevt_title =new String(request.getParameter("evevt_title").getBytes("ISO8859-1"),"utf-8");
-		String event_content=new String( request.getParameter("event_content").getBytes("ISO8859-1"),"utf-8");
-		
-		String event_date= request.getParameter("event_date");
+		String user_id= request.getParameter("user_id");
+		String event_date= request.getParameter("evevt_date");
+		String evevt_title=new String(request.getParameter("evevt_title").getBytes("ISO8859-1"),"UTF-8");
+		String event_content=new String(request.getParameter("event_content").getBytes("ISO8859-1"),"UTF-8");
 		String event_start_time= request.getParameter("event_start_time");
-		String event_finish_time= request.getParameter("event_finish_time");
+		String event_finish_time=request.getParameter("event_finish_time");
 		
-		System.out.println("添 加 事 件 的 用 户 ID ："+user_id);
+		System.out.println("添加事件用户ID ："+user_id);
 		
 		Message me=new Message();
-		Shooping_carBean shooping_carBean =new Shooping_carBean();
 		
 		try {
-//			 Date date = new Date();
-//             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//              shooping_carBean.setAdd_time(simpleDateFormat.format(date));
-			if(EventDao.addevent(user_id,evevt_title,event_content,event_date,event_start_time,event_finish_time)){
+			if(EventDao.add_event(user_id,event_date, evevt_title,event_content,event_start_time,event_finish_time)){
 				me.setCode(200);
-				me.setMessage("保存事件成功！");
+				me.setMessage("保存成功！");
 				me.setData(null);
 			}else{
 				me.setCode(-11);//返回给前端程序代码
 				me.setMessage("保存失败，请重试。");//返回给用户看
-				me.setData(null);	
+				me.setData(null);
+				
 			}
 			
 		} catch (SQLException e) {
@@ -104,6 +99,7 @@ public class Add_event extends HttpServlet {
 			e.printStackTrace();
 		}
 		out.println(JSON.toJSONString(me));
+		
 	}
 
 	/**

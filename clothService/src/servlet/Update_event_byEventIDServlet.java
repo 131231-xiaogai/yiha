@@ -9,19 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.alibaba.fastjson.JSON;
-
-import dao.AddressDao;
-import dao.GoodDao;
-import dao.UsersDao;
 import bean.Message;
 
-public class Update_good_by_goodIdServlet extends HttpServlet {
+import com.alibaba.fastjson.JSON;
+
+import dao.EventDao;
+import dao.GoodDao;
+
+public class Update_event_byEventIDServlet extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public Update_good_by_goodIdServlet() {
+	public Update_event_byEventIDServlet() {
 		super();
 	}
 
@@ -67,16 +67,18 @@ public class Update_good_by_goodIdServlet extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		
-		String goods_id= request.getParameter("goods_id");
-		String goods_name=new String(request.getParameter("goods_name").getBytes("ISO8859-1"),"UTF-8");
-		String goods_price= request.getParameter("goods_price");
-		String goods_yajin=request.getParameter("goods_yajin");
-		String goods_number=request.getParameter("goods_number");
-		String type_id= request.getParameter("goods_type");
-		System.out.println(goods_name);
+		String event_id= request.getParameter("event_id");
+		String evevt_title=new String(request.getParameter("evevt_title").getBytes("ISO8859-1"),"UTF-8");
+		String event_content=new String(request.getParameter("event_content").getBytes("ISO8859-1"),"UTF-8");
+		String event_start_time= request.getParameter("event_start_time");
+		String event_finish_time=request.getParameter("event_finish_time");
+		
+		System.out.println("事 件 标 题 为 ："+evevt_title);
+		
 		Message me=new Message();
+		
 		try {
-			if(GoodDao.update_good_by_goodId(goods_id, goods_name,goods_price,goods_yajin,goods_number,type_id)){
+			if(EventDao.update_event_byEventID(event_id, evevt_title,event_content,event_start_time,event_finish_time)){
 				me.setCode(200);
 				me.setMessage("保存成功！");
 				me.setData(null);
@@ -84,6 +86,7 @@ public class Update_good_by_goodIdServlet extends HttpServlet {
 				me.setCode(-11);//返回给前端程序代码
 				me.setMessage("保存失败，请重试。");//返回给用户看
 				me.setData(null);
+				
 			}
 			
 		} catch (SQLException e) {
