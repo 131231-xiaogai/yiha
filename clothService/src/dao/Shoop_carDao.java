@@ -63,6 +63,7 @@ public class Shoop_carDao {
 				shooping_carBean.setGoods_id(resultSet.getString("goods_id"));
 				shooping_carBean.setShop_id(resultSet.getString("shop_id"));
 				shooping_carBean.setShop_name(resultSet.getString("shop_name"));
+				shooping_carBean.setIsChildSelected(resultSet.getString("isChildSelected"));
 				
 				shooping_carBeans.add(shooping_carBean);	
 			}
