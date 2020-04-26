@@ -1,7 +1,9 @@
 package bean;
 
 public class Shooping_carBean {
-	
+
+	private boolean isSelect;
+
 	private String id;
 	private String user_id;
 	private String shop_id;
@@ -14,15 +16,17 @@ public class Shooping_carBean {
 	private String add_time;
 	private String cancle_time;
 	private String sumbit_time;
-	private String isChildSelected;
-	
-	
-	public String getIsChildSelected() {
-		return isChildSelected;
+
+
+	public boolean isSelect() {
+		return isSelect;
 	}
-	public void setIsChildSelected(String isChildSelected) {
-		this.isChildSelected = isChildSelected;
+
+	public void setSelect(boolean select) {
+		isSelect = select;
 	}
+
+
 	public String getId() {
 		return id;
 	}

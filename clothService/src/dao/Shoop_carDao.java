@@ -63,13 +63,30 @@ public class Shoop_carDao {
 				shooping_carBean.setGoods_id(resultSet.getString("goods_id"));
 				shooping_carBean.setShop_id(resultSet.getString("shop_id"));
 				shooping_carBean.setShop_name(resultSet.getString("shop_name"));
-				shooping_carBean.setIsChildSelected(resultSet.getString("isChildSelected"));
+				shooping_carBean.setId(resultSet.getString("id"));
+				shooping_carBean.setUser_id(resultSet.getString("user_id"));
 				
 				shooping_carBeans.add(shooping_carBean);	
 			}
 		}
 		return shooping_carBeans;
 		
+	}
+	
+	public static boolean updateShopCardCount(String id, String good_number)
+			throws SQLException {
+		boolean flag = false;
+		String sql = "update shooping_car set good_number=? where id =?";
+		preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.setString(1, good_number);
+		preparedStatement.setString(2, id);
+		int result = preparedStatement.executeUpdate();
+		if (result > 0) {
+			flag = true;
+		}
+
+		return flag;
+
 	}
 	
 	

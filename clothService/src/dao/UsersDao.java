@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.Flags.Flag;
+
 import bean.DBBean;
 import bean.UsersBean;
 
@@ -129,6 +131,30 @@ public static boolean deleted_user_byId(String uerid)throws SQLException {
 	return flag;
 	
 	
+}
+
+public static boolean update_user_balance(String uerid,String  price)throws SQLException  {
+	boolean flag=false;
+	String balance=UsersDao.select_user_by_id(uerid).getBalance();
+	double diff=Double.valueOf(balance)-Double.valueOf(price);
+	if (diff<0) {
+		flag=false;
+	}else {
+		String newBalanceString=Double.valueOf(balance)-Double.valueOf(price)+"";
+		String sql = "UPDATE user "
+				+ "SET balance=? "
+				+ "WHERE uerid=?";
+		preparedStatement=connection.prepareStatement(sql);
+		preparedStatement.setString(1, newBalanceString);
+		preparedStatement.setString(2, uerid);
+
+		int results =preparedStatement.executeUpdate();//¸üÐÂ
+		if(results ==1){
+			flag=true;
+		}
+	}
+	
+	return flag;		
 }
 
 

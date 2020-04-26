@@ -194,6 +194,62 @@
     <servlet-name>select_order_by_UseridAndOrderStstus</servlet-name>
     <servlet-class>servlet.select_order_by_UseridAndOrderStstus</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UpdateShopCardCountServlet</servlet-name>
+    <servlet-class>servlet.UpdateShopCardCountServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>select_order_by_ShopidAndOrderStstus</servlet-name>
+    <servlet-class>servlet.select_order_by_ShopidAndOrderStstus</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UpdateOrder_statusServlet</servlet-name>
+    <servlet-class>servlet.UpdateOrder_statusServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Add_order</servlet-name>
+    <servlet-class>servlet.Add_order</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_message</servlet-name>
+    <servlet-class>servlet.Select_message</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Insert_message</servlet-name>
+    <servlet-class>servlet.Insert_message</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_message_byshopid</servlet-name>
+    <servlet-class>servlet.Select_message_byshopid</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Update_user_balance</servlet-name>
+    <servlet-class>servlet.Update_user_balance</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+
 
 
 
@@ -326,6 +382,38 @@
   <servlet-mapping>
     <servlet-name>select_order_by_UseridAndOrderStstus</servlet-name>
     <url-pattern>/select_order_by_UseridAndOrderStstus</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateShopCardCountServlet</servlet-name>
+    <url-pattern>/UpdateShopCardCountServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>select_order_by_ShopidAndOrderStstus</servlet-name>
+    <url-pattern>/select_order_by_ShopidAndOrderStstus</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateOrder_statusServlet</servlet-name>
+    <url-pattern>/UpdateOrder_statusServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Add_order</servlet-name>
+    <url-pattern>/Add_order</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_message</servlet-name>
+    <url-pattern>/Select_message</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Insert_message</servlet-name>
+    <url-pattern>/Insert_message</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_message_byshopid</servlet-name>
+    <url-pattern>/Select_message_byshopid</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Update_user_balance</servlet-name>
+    <url-pattern>/Update_user_balance</url-pattern>
   </servlet-mapping>
   
   
