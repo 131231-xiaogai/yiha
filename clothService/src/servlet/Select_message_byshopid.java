@@ -67,8 +67,9 @@ public class Select_message_byshopid extends HttpServlet {
 		//String user_id,String order_status
 		
 		String shop_id=request.getParameter("shop_id");
-		//String order_status=request.getParameter("order_status");
-		System.out.println("查询消息的是编号"+shop_id+"的商家");
+		String message_status=request.getParameter("message_status");
+		String message_type=request.getParameter("message_type");
+		System.out.println("查询消息的是编号"+shop_id+"的商家,消息状态为"+message_status+"消息类型为"+message_type);
 		
 		
 		TMessage  <List<MssageBean>> tMessage=new TMessage();
@@ -76,7 +77,7 @@ public class Select_message_byshopid extends HttpServlet {
 		PrintWriter printWriter=response.getWriter();
 		
 		try {
-			List<MssageBean> mssageBeans = MessageDao.select_message(shop_id);
+			List<MssageBean> mssageBeans = MessageDao.select_message_byshopid(shop_id,message_status,message_type);
 				tMessage.setCode(200);
 				tMessage.setMessage("查询成功");
 				tMessage.setData(mssageBeans);   //存放要返回给前端显示的数据

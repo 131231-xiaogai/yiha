@@ -81,10 +81,17 @@ public class PublicgoodServlet extends HttpServlet {
 						goodBean.setGoods_price(content);
 					}else if ("goods_yajin".equals(itemNameString)) {
 						goodBean.setGoods_yajin(content);	
-					}else if ("goods_type_id".equals(itemNameString)) {
-						goodBean.setType_id(content);	
+					}else if ("goods_size_id".equals(itemNameString)) {
+						goodBean.setSize(content);	
 					} else if ("shop_id".equals(itemNameString)) {
 						goodBean.setShop_id(content);	
+					}else if ("shop_name".equals(itemNameString)) {
+						goodBean.setShop_name(content);
+					}
+					else if ("type_id".equals(itemNameString)) {
+						goodBean.setType_id(content);
+					}else if ("type_activity_id".equals(itemNameString)) {
+						goodBean.setType_activity_id(content);
 					}
                     
                     
@@ -105,11 +112,17 @@ public class PublicgoodServlet extends HttpServlet {
             }
         }
         try {
-//            Date date = new Date();
-//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//            feedBackBean.setFeedback_time(simpleDateFormat.format(date));
             GoodDao goodDao = new GoodDao();
-            boolean addFlag = GoodDao.addgood(goodBean.getGood_img(),goodBean.getGoods_name(),goodBean.getGoods_price(),goodBean.getGoods_yajin(),goodBean.getType_id(),goodBean.getShop_id(),goodBean.getShop_name());
+            boolean addFlag = GoodDao.addgood(
+            		goodBean.getGood_img(),
+            		goodBean.getGoods_name(),
+            		goodBean.getGoods_price(),
+            		goodBean.getGoods_yajin(),
+            		goodBean.getSize(),
+            		goodBean.getShop_id(),
+            		goodBean.getShop_name(),
+                    goodBean.getType_id(),
+                    goodBean.getType_activity_id());
             if (addFlag) {
             	message.setCode(200);
                 message.setData(null);
@@ -121,9 +134,7 @@ public class PublicgoodServlet extends HttpServlet {
                 message.setMessage("ÃÌº” ß∞‹");
                 out.print(JSON.toJSONString(message));
             }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

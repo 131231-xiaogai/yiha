@@ -9,9 +9,17 @@ public class MssageBean {
 	private String message_status;
 	private String user_id;
 	private String shop_id;
+	private String message_type;
 	
 	
 	
+	
+	public String getMessage_type() {
+		return message_type;
+	}
+	public void setMessage_type(String message_type) {
+		this.message_type = message_type;
+	}
 	public String getShop_id() {
 		return shop_id;
 	}

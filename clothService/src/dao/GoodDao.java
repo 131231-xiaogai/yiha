@@ -53,9 +53,29 @@ public class GoodDao {
 		return goodBeans;
 	}
 
-	public static boolean addgood(String image,String goods_name,String goods_price,String goods_yajin,String type_id,String shop_id,String shop_name)throws SQLException {
+	public static boolean addgood(
+			String image,
+			String goods_name,
+			String goods_price,
+			String goods_yajin,
+			String size,
+			String shop_id,
+			String shop_name,
+			String type_id,
+			String type_activity_id
+			)throws SQLException {
 		Boolean flag = false;
-		String sql = "INSERT INTO goods (good_img,goods_name,goods_price,goods_yajin,type_id,shop_id,shop_name) VALUES (?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO goods "
+				+ "(good_img,"
+				+ "goods_name,"
+				+ "goods_price,"
+				+ "goods_yajin,"
+				+ "size,"
+				+ "shop_id,"
+				+ "shop_name,"
+				+ "type_id,"
+				+ "type_activity_id"
+				+ ") VALUES (?,?,?,?,?,?,?,?,?)";
 		//
 		preparedStatement=connection.prepareStatement(sql);
 		
@@ -66,6 +86,8 @@ public class GoodDao {
 		preparedStatement.setString(5, type_id);
 		preparedStatement.setString(6, shop_id);
 		preparedStatement.setString(7, shop_name);
+		preparedStatement.setString(8, type_id);
+		preparedStatement.setString(9, type_activity_id);
 		
 		int row = preparedStatement.executeUpdate();
 		if (row>0) {

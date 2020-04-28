@@ -10,21 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.MssageBean;
 import bean.OrderBean;
 import bean.TMessage;
 
 import com.alibaba.fastjson.JSON;
 
-import dao.MessageDao;
 import dao.OrderDao;
 
-public class Select_message extends HttpServlet {
+public class Selece_order_totalprice extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public Select_message() {
+	public Selece_order_totalprice() {
 		super();
 	}
 
@@ -50,6 +48,7 @@ public class Select_message extends HttpServlet {
 			throws ServletException, IOException {
 				doPost(request, response);
 	}
+
 	/**
 	 * The doPost method of the servlet. <br>
 	 *
@@ -65,24 +64,20 @@ public class Select_message extends HttpServlet {
 
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;utf-8");
-		//String user_id,String order_status
-		
-		String user_id=request.getParameter("user_id");
-		String message_status=request.getParameter("message_status");
-		String message_type=request.getParameter("message_type");
-		System.out.println("查询消息的是编号"+user_id+"的用户,消息状态为"+message_status+"消息类型为"+message_type);
+		response.setContentType("text/html;utf-8");	
+		String shop_id=request.getParameter("shop_id");
+		System.out.println("查询总收入的商家编号为"+shop_id);
 		
 		
-		TMessage  <List<MssageBean>> tMessage=new TMessage();
+		TMessage  <List<OrderBean>> tMessage=new TMessage();
 		
 		PrintWriter printWriter=response.getWriter();
 		
 		try {
-			List<MssageBean> mssageBeans = MessageDao.select_message(user_id,message_status,message_type);
+			List<OrderBean> orderBeans = OrderDao.selece_order_totalprice(shop_id);
 				tMessage.setCode(200);
 				tMessage.setMessage("查询成功");
-				tMessage.setData(mssageBeans);   //存放要返回给前端显示的数据
+				tMessage.setData(orderBeans);   //存放要返回给前端显示的数据
 			} catch (SQLException e) {
 				// TODO 自动生成的 catch 块
 				tMessage.setCode(-11);
@@ -90,10 +85,9 @@ public class Select_message extends HttpServlet {
 				tMessage.setData(null);
 				e.printStackTrace();
 			}
-			
-		
 		printWriter.print(JSON.toJSONString(tMessage));
 	}
+
 	/**
 	 * Initialization of the servlet. <br>
 	 *

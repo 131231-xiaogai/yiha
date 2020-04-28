@@ -76,6 +76,7 @@ public class Insert_message extends HttpServlet {
 		String message_context=new String(request.getParameter("message_context").getBytes("ISO8859-1"),"UTF-8");
 		String message_status= request.getParameter("message_status");
 		String shop_id=request.getParameter("shop_id");
+		String message_type=request.getParameter("message_type");
 		System.out.println(message_title);
 		
 		Message me=new Message();
@@ -86,7 +87,7 @@ public class Insert_message extends HttpServlet {
 			Date date = new Date();
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
              mssageBean.setMessage_publish_time(simpleDateFormat.format(date));
-			if(MessageDao.insert_message(message_title, message_context,mssageBean.getMessage_publish_time(),message_status,user_id,shop_id)){
+			if(MessageDao.insert_message(message_title, message_context,mssageBean.getMessage_publish_time(),message_status,user_id,shop_id,message_type)){
 				me.setCode(200);
 				me.setMessage("±£´æ³É¹¦£¡");
 				me.setData(null);
