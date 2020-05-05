@@ -45,6 +45,7 @@ public class OrderDao {
 				orderBean.setGood_img(resultSet.getString("good_img"));
 				orderBean.setShop_id(resultSet.getString("shop_id"));
 				orderBean.setOrder_code(resultSet.getString("order_code"));
+				orderBean.setGoods_yajin(resultSet.getString("goods_yajin"));
 				orderBeans.add(orderBean);
 			}
 		}
@@ -81,9 +82,7 @@ public class OrderDao {
 				orderBean.setGood_img(resultSet.getString("good_img"));
 				orderBean.setShop_id(resultSet.getString("shop_id"));
 				orderBean.setOrder_code(resultSet.getString("order_code"));
-				
-				
-				
+				orderBean.setGoods_yajin(resultSet.getString("goods_yajin"));
 				orderBeans.add(orderBean);
 			}
 		}
@@ -109,7 +108,7 @@ public class OrderDao {
 	public static boolean add_order(String order_rent_validation_time,String order_rent_finesh_time,
 			String order_creat_time,String order_getgoods_time,String order_status,String order_remark,
 			String user_id,String goods_id,String address,String deliver,String good_name,String good_number,
-			String good_price,String total_price,String good_img,String shop_id,String order_code)throws SQLException  {
+			String good_price,String total_price,String good_img,String shop_id,String order_code,String goods_yajin)throws SQLException  {
 		
 		boolean flag=false;
 		String sql = " insert into `order`"
@@ -129,8 +128,9 @@ public class OrderDao {
 				+ "total_price,"
 				+ "good_img,"
 				+ "shop_id,"
-				+"order_code) "
-				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+"order_code,"
+				+ "goods_yajin) "
+				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		//
 		preparedStatement=connection.prepareStatement(sql);
 		preparedStatement.setString(1, order_rent_validation_time);
@@ -139,7 +139,6 @@ public class OrderDao {
 		preparedStatement.setString(4, order_getgoods_time);
 		preparedStatement.setString(5, order_status);
 		preparedStatement.setString(6, order_remark);
-		
 		preparedStatement.setString(7, user_id);
 		preparedStatement.setString(8, goods_id);
 		preparedStatement.setString(9, address);
@@ -151,7 +150,7 @@ public class OrderDao {
 		preparedStatement.setString(15, good_img);
 		preparedStatement.setString(16, shop_id);
 		preparedStatement.setString(17, order_code);
-		
+		preparedStatement.setString(18, goods_yajin);
 		
 		int results =preparedStatement.executeUpdate();//¸üÐÂ
 		if(results ==1){
@@ -188,8 +187,7 @@ public class OrderDao {
 				orderBean.setGood_img(resultSet.getString("good_img"));
 				orderBean.setShop_id(resultSet.getString("shop_id"));
 				orderBean.setOrder_code(resultSet.getString("order_code"));
-				
-				
+				orderBean.setGoods_yajin(resultSet.getString("goods_yajin"));
 				
 				orderBeans.add(orderBean);
 			}

@@ -3,27 +3,24 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Message;
+
 import com.alibaba.fastjson.JSON;
 
-import dao.GoodDao;
-import dao.Shoop_carDao;
-import bean.GoodBean;
-import bean.Shooping_carBean;
-import bean.TMessage;
+import dao.UsersDao;
 
-public class Select_shopcar_by_useridServlet extends HttpServlet {
+public class Update_user_role extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public Select_shopcar_by_useridServlet() {
+	public Update_user_role() {
 		super();
 	}
 
@@ -47,8 +44,39 @@ public class Select_shopcar_by_useridServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-				doPost(request, response);
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;utf-8");
+		response.setCharacterEncoding("utf-8");
+		
+		Message message=new Message();
+		
+		PrintWriter printWriter=response.getWriter();
+		
+		String uerid=request.getParameter("user_id");
+		String role_id=request.getParameter("role_id");
+		
+		System.out.println("操作的用户编号是"+uerid);
+		try {
+			if (UsersDao.update_user_role(uerid, role_id)) {
+				message.setCode(200);
+				message.setData(null);
+				message.setMessage("操作成功");
+			}else {
+				message.setCode(-11);
+				message.setData(null);
+				message.setMessage("操作失败");
+			}
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			message.setCode(-11);
+			message.setData(null);
+			message.setMessage("支付失败");
+		}
+		printWriter.println(JSON.toJSONString(message));
+		
 	}
+
 	/**
 	 * The doPost method of the servlet. <br>
 	 *
@@ -62,31 +90,7 @@ public class Select_shopcar_by_useridServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;utf-8");
-		
-		String user_id=request.getParameter("user_id");
-		String shop_car_status=request.getParameter("shop_car_status");
-		
-		TMessage  <List<Shooping_carBean>> tMessage=new TMessage();
-		
-		PrintWriter printWriter=response.getWriter();
-		
-		try {
-			List<Shooping_carBean> shooping_carBeans = Shoop_carDao.select_shopcar_by_userid(user_id,shop_car_status);
-				tMessage.setCode(200);
-				tMessage.setMessage("查询成功");
-				tMessage.setData(shooping_carBeans);   //存放要返回给前端显示的数据
-			} catch (SQLException e) {
-				// TODO 自动生成的 catch 块
-				tMessage.setCode(-11);
-				tMessage.setMessage("查询失败");
-				tMessage.setData(null);
-				e.printStackTrace();
-			}
-			
-		printWriter.print(JSON.toJSONString(tMessage));
+		doGet(request, response);
 	}
 
 	/**

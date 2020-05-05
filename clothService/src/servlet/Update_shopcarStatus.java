@@ -3,27 +3,25 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Message;
+
 import com.alibaba.fastjson.JSON;
 
-import dao.GoodDao;
+import dao.AddressDao;
 import dao.Shoop_carDao;
-import bean.GoodBean;
-import bean.Shooping_carBean;
-import bean.TMessage;
 
-public class Select_shopcar_by_useridServlet extends HttpServlet {
+public class Update_shopcarStatus extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public Select_shopcar_by_useridServlet() {
+	public Update_shopcarStatus() {
 		super();
 	}
 
@@ -49,6 +47,7 @@ public class Select_shopcar_by_useridServlet extends HttpServlet {
 			throws ServletException, IOException {
 				doPost(request, response);
 	}
+
 	/**
 	 * The doPost method of the servlet. <br>
 	 *
@@ -66,27 +65,32 @@ public class Select_shopcar_by_useridServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;utf-8");
 		
-		String user_id=request.getParameter("user_id");
-		String shop_car_status=request.getParameter("shop_car_status");
+		PrintWriter out = response.getWriter();
 		
-		TMessage  <List<Shooping_carBean>> tMessage=new TMessage();
+		String id= request.getParameter("shopacrId");
+		String shop_car_status= request.getParameter("shop_car_status");
+		System.out.println(id);
 		
-		PrintWriter printWriter=response.getWriter();
+		Message me=new Message();
 		
 		try {
-			List<Shooping_carBean> shooping_carBeans = Shoop_carDao.select_shopcar_by_userid(user_id,shop_car_status);
-				tMessage.setCode(200);
-				tMessage.setMessage("查询成功");
-				tMessage.setData(shooping_carBeans);   //存放要返回给前端显示的数据
-			} catch (SQLException e) {
-				// TODO 自动生成的 catch 块
-				tMessage.setCode(-11);
-				tMessage.setMessage("查询失败");
-				tMessage.setData(null);
-				e.printStackTrace();
+			if(Shoop_carDao.update_shopcarStatus(id, shop_car_status)){
+				me.setCode(200);
+				me.setMessage("修改购物车状态成功！");
+				me.setData(null);
+			}else{
+				me.setCode(-11);//返回给前端程序代码
+				me.setMessage("修改购物车状态失败，请重试。");//返回给用户看
+				me.setData(null);
+				
 			}
 			
-		printWriter.print(JSON.toJSONString(tMessage));
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		out.println(JSON.toJSONString(me));
+		
 	}
 
 	/**

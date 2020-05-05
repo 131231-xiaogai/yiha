@@ -3,7 +3,6 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,18 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSON;
 
-import dao.GoodDao;
-import dao.Shoop_carDao;
-import bean.GoodBean;
-import bean.Shooping_carBean;
+import dao.ConsumerDao;
+import bean.ConsumerBean;
 import bean.TMessage;
 
-public class Select_shopcar_by_useridServlet extends HttpServlet {
+public class Select_Bodydata_byuserId extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public Select_shopcar_by_useridServlet() {
+	public Select_Bodydata_byuserId() {
 		super();
 	}
 
@@ -47,8 +44,32 @@ public class Select_shopcar_by_useridServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-				doPost(request, response);
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;utf-8");
+		
+		String user_id=request.getParameter("user_id");
+		System.out.println(user_id);
+		TMessage  tMessage=new TMessage(); 
+		
+		PrintWriter printWriter=response.getWriter();
+		
+		try {
+			ConsumerBean consumerBean=ConsumerDao.select_Bodydata_byuserId(user_id);
+			tMessage.setCode(200);
+			tMessage.setMessage("查询用户参数成功");
+			tMessage.setData(consumerBean);   //存放要返回给前端显示的数据
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			tMessage.setCode(-11);
+			tMessage.setMessage("查询用户参数失败");
+			tMessage.setData(null);
+			e.printStackTrace();
+		}
+		
+		printWriter.print(JSON.toJSONString(tMessage));
 	}
+
 	/**
 	 * The doPost method of the servlet. <br>
 	 *
@@ -61,32 +82,32 @@ public class Select_shopcar_by_useridServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		doGet(request, response);
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;utf-8");
 		
 		String user_id=request.getParameter("user_id");
-		String shop_car_status=request.getParameter("shop_car_status");
-		
-		TMessage  <List<Shooping_carBean>> tMessage=new TMessage();
+		System.out.println(user_id);
+		TMessage  tMessage=new TMessage(); 
 		
 		PrintWriter printWriter=response.getWriter();
 		
 		try {
-			List<Shooping_carBean> shooping_carBeans = Shoop_carDao.select_shopcar_by_userid(user_id,shop_car_status);
-				tMessage.setCode(200);
-				tMessage.setMessage("查询成功");
-				tMessage.setData(shooping_carBeans);   //存放要返回给前端显示的数据
-			} catch (SQLException e) {
-				// TODO 自动生成的 catch 块
-				tMessage.setCode(-11);
-				tMessage.setMessage("查询失败");
-				tMessage.setData(null);
-				e.printStackTrace();
-			}
-			
+			ConsumerBean consumerBean=ConsumerDao.select_Bodydata_byuserId(user_id);
+			tMessage.setCode(200);
+			tMessage.setMessage("查询用户参数成功");
+			tMessage.setData(consumerBean);   //存放要返回给前端显示的数据
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			tMessage.setCode(-11);
+			tMessage.setMessage("查询用户参数失败");
+			tMessage.setData(null);
+			e.printStackTrace();
+		}
+		
 		printWriter.print(JSON.toJSONString(tMessage));
+		
 	}
 
 	/**

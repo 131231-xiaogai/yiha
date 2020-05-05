@@ -20,13 +20,14 @@ public class UsersDao {
 	static ResultSet resultSet=null;                    
 	
 	//数据库操作
-public static List<UsersBean> selectAllUser(String role_id) throws SQLException{
+public static List<UsersBean> selectAllUser(String role_id,String role_status) throws SQLException{
 		
 		List<UsersBean> usersBeans=new ArrayList<UsersBean>();
 		
-		String sql="select * from user WHERE role_id=?";
+		String sql="select * from user WHERE role_id=? and role_status=?";
 		preparedStatement=connection.prepareStatement(sql);
 		preparedStatement.setString(1, role_id);
+		preparedStatement.setString(2, role_status);
 		resultSet=preparedStatement.executeQuery();
 		
 		if(resultSet!=null){
@@ -37,7 +38,7 @@ public static List<UsersBean> selectAllUser(String role_id) throws SQLException{
 				usersBean.setPassword(resultSet.getString("password"));
 				usersBean.setNickname(resultSet.getString("nickname"));
 				usersBean.setSex(resultSet.getString("sex"));
-				usersBean.setImage(resultSet.getString("image"));
+				usersBean.setRole_status(resultSet.getString("role_status"));
 				usersBean.setBalance(resultSet.getString("balance"));
 				usersBean.setId_number(resultSet.getString("id_number"));
 				usersBean.setRole_id(resultSet.getString("role_id"));
@@ -48,12 +49,13 @@ public static List<UsersBean> selectAllUser(String role_id) throws SQLException{
 	}
 public static boolean user_regiest(String reg_phonemb,String reg_bassword,String reg_roleid)throws SQLException  {
 	boolean flag=false;
-	
-	String sql = "insert into user(phone,password,role_id) values(?,?,?)";
+	String role_status =reg_roleid;
+	String sql = "insert into user(phone,password,role_id,role_status) values(?,?,?,?)";
 	preparedStatement=connection.prepareStatement(sql);
 	preparedStatement.setString(1, reg_phonemb);
 	preparedStatement.setString(2, reg_bassword);
 	preparedStatement.setString(3, reg_roleid);
+	preparedStatement.setString(4, role_status);
 	int results =preparedStatement.executeUpdate();//更新
 	if(results ==1){
 		flag=true;
@@ -76,7 +78,7 @@ public static UsersBean select_user_by_id(String uerid) throws SQLException{
 			usersBean.setPassword(resultSet.getString("password"));
 			usersBean.setNickname(resultSet.getString("nickname"));
 			usersBean.setSex(resultSet.getString("sex"));
-			usersBean.setImage(resultSet.getString("image"));
+			usersBean.setRole_status(resultSet.getString("role_status"));
 			usersBean.setBalance(resultSet.getString("balance"));
 			usersBean.setId_number(resultSet.getString("id_number"));
 			usersBean.setRole_id(resultSet.getString("role_id"));			
@@ -156,6 +158,70 @@ public static boolean update_user_balance(String uerid,String  price)throws SQLE
 	
 	return flag;		
 }
+
+public static UsersBean select_user_by_shopID(String shop_id) throws SQLException{
+	
+	UsersBean usersBean=new UsersBean();
+	
+	String sql="SELECT * FROM user WHERE uerid= ?";
+	preparedStatement=connection.prepareStatement(sql);
+	preparedStatement.setString(1, shop_id);
+	resultSet=preparedStatement.executeQuery();
+	
+	if(resultSet!=null){
+		while(resultSet.next()){
+			usersBean.setUerid(resultSet.getString("uerid"));
+			usersBean.setPhone(resultSet.getString("phone"));
+			usersBean.setPassword(resultSet.getString("password"));
+			usersBean.setNickname(resultSet.getString("nickname"));
+			usersBean.setSex(resultSet.getString("sex"));
+			usersBean.setRole_status(resultSet.getString("role_status"));
+			usersBean.setBalance(resultSet.getString("balance"));
+			usersBean.setId_number(resultSet.getString("id_number"));
+			usersBean.setRole_id(resultSet.getString("role_id"));			
+			//usersBeans.add(usersBean);	
+		}
+	}
+	return usersBean;
+	}
+
+//update_shop_balance
+public static boolean update_shop_balance(String uerid,String  price)throws SQLException  {
+	boolean flag=false;
+		String sql = "UPDATE user "
+				+ "SET balance=? "
+				+ "WHERE uerid=?";
+		preparedStatement=connection.prepareStatement(sql);
+		preparedStatement.setString(1, price);
+		preparedStatement.setString(2, uerid);
+
+		int results =preparedStatement.executeUpdate();//更新
+		if(results ==1){
+			flag=true;
+		}
+	
+	
+	return flag;	
+}
+//
+public static boolean update_user_role(String uerid,String role_id)throws SQLException  {
+	boolean flag=false;
+		String sql = "UPDATE user "
+				+ "SET role_id=? "
+				+ "WHERE uerid=? ";
+		preparedStatement=connection.prepareStatement(sql);
+		preparedStatement.setString(1, role_id);
+		preparedStatement.setString(2, uerid);
+
+		int results =preparedStatement.executeUpdate();//更新
+		if(results ==1){
+			flag=true;
+		}
+	
+	
+	return flag;	
+}
+
 
 
 }

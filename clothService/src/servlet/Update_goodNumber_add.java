@@ -3,27 +3,24 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Message;
+
 import com.alibaba.fastjson.JSON;
 
 import dao.GoodDao;
-import dao.Shoop_carDao;
-import bean.GoodBean;
-import bean.Shooping_carBean;
-import bean.TMessage;
 
-public class Select_shopcar_by_useridServlet extends HttpServlet {
+public class Update_goodNumber_add extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public Select_shopcar_by_useridServlet() {
+	public Update_goodNumber_add() {
 		super();
 	}
 
@@ -47,8 +44,35 @@ public class Select_shopcar_by_useridServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-				doPost(request, response);
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;utf-8");
+
+		PrintWriter out = response.getWriter();
+		String good_id = request.getParameter("good_id");
+		String good_number = request.getParameter("ruturn_goodNumber");
+		System.out.println("商品编号"+good_id+"本订单退还衣服数量为"+good_number);
+		Message message = new Message();
+		try {
+			if (GoodDao.update_goodNumber_add(good_id, good_number)) {
+				message.setCode(200);
+				message.setData(null);
+				message.setMessage("修改成功");
+			} else {
+				message.setCode(-11);
+				message.setData(null);
+				message.setMessage("修改失败");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+//			message.setCode(-11);
+//			message.setData(null);
+//			message.setMessage("修改失败");
+		}
+		out.println(JSON.toJSONString(message));
 	}
+
 	/**
 	 * The doPost method of the servlet. <br>
 	 *
@@ -62,31 +86,7 @@ public class Select_shopcar_by_useridServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;utf-8");
-		
-		String user_id=request.getParameter("user_id");
-		String shop_car_status=request.getParameter("shop_car_status");
-		
-		TMessage  <List<Shooping_carBean>> tMessage=new TMessage();
-		
-		PrintWriter printWriter=response.getWriter();
-		
-		try {
-			List<Shooping_carBean> shooping_carBeans = Shoop_carDao.select_shopcar_by_userid(user_id,shop_car_status);
-				tMessage.setCode(200);
-				tMessage.setMessage("查询成功");
-				tMessage.setData(shooping_carBeans);   //存放要返回给前端显示的数据
-			} catch (SQLException e) {
-				// TODO 自动生成的 catch 块
-				tMessage.setCode(-11);
-				tMessage.setMessage("查询失败");
-				tMessage.setData(null);
-				e.printStackTrace();
-			}
-			
-		printWriter.print(JSON.toJSONString(tMessage));
+		doGet(request, response);
 	}
 
 	/**
@@ -99,3 +99,4 @@ public class Select_shopcar_by_useridServlet extends HttpServlet {
 	}
 
 }
+

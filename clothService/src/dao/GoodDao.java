@@ -52,7 +52,6 @@ public class GoodDao {
 		}
 		return goodBeans;
 	}
-
 	public static boolean addgood(
 			String image,
 			String goods_name,
@@ -62,7 +61,9 @@ public class GoodDao {
 			String shop_id,
 			String shop_name,
 			String type_id,
-			String type_activity_id
+			String type_activity_id,
+			String goods_number
+			
 			)throws SQLException {
 		Boolean flag = false;
 		String sql = "INSERT INTO goods "
@@ -74,11 +75,11 @@ public class GoodDao {
 				+ "shop_id,"
 				+ "shop_name,"
 				+ "type_id,"
-				+ "type_activity_id"
-				+ ") VALUES (?,?,?,?,?,?,?,?,?)";
+				+ "type_activity_id,"
+				+ "goods_number"
+				+ ") VALUES (?,?,?,?,?,?,?,?,?,?)";
 		//
 		preparedStatement=connection.prepareStatement(sql);
-		
 		preparedStatement.setString(1, image);
 		preparedStatement.setString(2, goods_name);
 		preparedStatement.setString(3, goods_price);
@@ -88,6 +89,7 @@ public class GoodDao {
 		preparedStatement.setString(7, shop_name);
 		preparedStatement.setString(8, type_id);
 		preparedStatement.setString(9, type_activity_id);
+		preparedStatement.setString(10, goods_number);
 		
 		int row = preparedStatement.executeUpdate();
 		if (row>0) {
@@ -95,7 +97,6 @@ public class GoodDao {
 		}
 		return flag;	
 	}
-
 	
 	public static GoodBean select_good_by_id(String goods_id) throws SQLException {
 		GoodBean goodBean = null;//
@@ -137,8 +138,6 @@ public class GoodDao {
 		preparedStatement=connection.prepareStatement(sql);
 		preparedStatement.setString(1, shop_id);
 		resultSet=preparedStatement.executeQuery();
-		
-
 		if(resultSet!=null){
 			while(resultSet.next()){
 				GoodBean goodBean=new GoodBean();
@@ -276,4 +275,52 @@ public class GoodDao {
 		return flag;		
 	}
 	
+	public static boolean update_goodNumber(String goods_id, String goods_number)
+			throws SQLException {
+		boolean flag=false;
+		String old_number=GoodDao.select_good_by_id(goods_id).getGoods_number();
+		double diff=Double.valueOf(old_number)-Double.valueOf(goods_number);
+		if (diff<0) {
+			flag=false;
+		}else {
+			String newnumberString=Double.valueOf(old_number)-Double.valueOf(goods_number)+"";
+			String sql = "UPDATE goods "
+					+ "SET goods_number=? "
+					+ "WHERE goods_id=?";
+			preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setString(1, newnumberString);
+			preparedStatement.setString(2, goods_id);
+
+			int results =preparedStatement.executeUpdate();//更新
+			if(results ==1){
+				flag=true;
+			}
+		}
+		return flag;		
+	}
+	
+	public static boolean update_goodNumber_add(String goods_id, String goods_number)
+			throws SQLException {
+		boolean flag=false;
+		String old_number=GoodDao.select_good_by_id(goods_id).getGoods_number();
+		double diff=Double.valueOf(old_number)+Double.valueOf(goods_number);
+		if (diff<0) {
+			flag=false;
+		}else {
+			String newnumberString=Double.valueOf(old_number)+Double.valueOf(goods_number)+"";
+			String sql = "UPDATE goods "
+					+ "SET goods_number=? "
+					+ "WHERE goods_id=?";
+			preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setString(1, newnumberString);
+			preparedStatement.setString(2, goods_id);
+
+			int results =preparedStatement.executeUpdate();//更新
+			if(results ==1){
+				flag=true;
+			}
+		}
+		return flag;		
+	}
+
 }

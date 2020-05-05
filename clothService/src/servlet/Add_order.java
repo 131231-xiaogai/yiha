@@ -84,13 +84,14 @@ public class Add_order extends HttpServlet {
 			String total_price=request.getParameter("total_price");
 			String good_price=request.getParameter("good_price");
 			String good_number=request.getParameter("good_number");
+			String goods_yajin =request.getParameter("goods_yajin");
 			
 			String good_name=new String(request.getParameter("good_name").getBytes("ISO8859-1"),"UTF-8");
 			
 			String deliver=request.getParameter("deliver");
 			if(OrderDao.add_order(order_rent_validation_time, order_rent_finesh_time
 					, order_creat_time, order_getgoods_time, order_status, order_remark, user_id, goods_id, address
-					, deliver, good_name, good_number, good_price, total_price, good_img, shop_id, order_code)){
+					, deliver, good_name, good_number, good_price, total_price, good_img, shop_id, order_code,goods_yajin)){
 				me.setCode(200);
 				me.setMessage("±£´æ³É¹¦£¡");
 				me.setData(null);

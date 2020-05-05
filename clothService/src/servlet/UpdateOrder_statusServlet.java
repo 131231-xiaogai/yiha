@@ -71,7 +71,7 @@ public class UpdateOrder_statusServlet extends HttpServlet {
 		//String contact_name=new String(request.getParameter("contact_name").getBytes("ISO8859-1"),"UTF-8");
 		String order_status= request.getParameter("order_status");
 
-		System.out.println("取消的订单编号为"+order_id);
+		System.out.println("操作的订单编号为"+order_id);
 		
 		Message me=new Message();
 		

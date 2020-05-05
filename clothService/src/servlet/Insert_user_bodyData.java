@@ -3,27 +3,25 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Message;
+
 import com.alibaba.fastjson.JSON;
 
-import dao.GoodDao;
-import dao.Shoop_carDao;
-import bean.GoodBean;
-import bean.Shooping_carBean;
-import bean.TMessage;
+import dao.ConsumerDao;
+import dao.EventDao;
 
-public class Select_shopcar_by_useridServlet extends HttpServlet {
+public class Insert_user_bodyData extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public Select_shopcar_by_useridServlet() {
+	public Insert_user_bodyData() {
 		super();
 	}
 
@@ -49,6 +47,7 @@ public class Select_shopcar_by_useridServlet extends HttpServlet {
 			throws ServletException, IOException {
 				doPost(request, response);
 	}
+
 	/**
 	 * The doPost method of the servlet. <br>
 	 *
@@ -59,6 +58,7 @@ public class Select_shopcar_by_useridServlet extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
+	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -66,27 +66,50 @@ public class Select_shopcar_by_useridServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;utf-8");
 		
-		String user_id=request.getParameter("user_id");
-		String shop_car_status=request.getParameter("shop_car_status");
+		PrintWriter out = response.getWriter();
 		
-		TMessage  <List<Shooping_carBean>> tMessage=new TMessage();
+		String user_id= request.getParameter("user_id");
+		String weight= request.getParameter("weight");
+		String height= request.getParameter("height");
+		String bust=request.getParameter("bust");
+		String the_waist= request.getParameter("the_waist");
+		String hipline= request.getParameter("hipline");
+		String shoulder_width= request.getParameter("shoulder_width");
+		String clothing_length=request.getParameter("clothing_length");
+		String trousers_length= request.getParameter("trousers_length");
 		
-		PrintWriter printWriter=response.getWriter();
+		
+		System.out.println("添加用户参数的用户ID ："+user_id);
+		
+		Message me=new Message();
 		
 		try {
-			List<Shooping_carBean> shooping_carBeans = Shoop_carDao.select_shopcar_by_userid(user_id,shop_car_status);
-				tMessage.setCode(200);
-				tMessage.setMessage("查询成功");
-				tMessage.setData(shooping_carBeans);   //存放要返回给前端显示的数据
-			} catch (SQLException e) {
-				// TODO 自动生成的 catch 块
-				tMessage.setCode(-11);
-				tMessage.setMessage("查询失败");
-				tMessage.setData(null);
-				e.printStackTrace();
+			if(ConsumerDao.insert_user_bodyData( 
+					 user_id,
+					 weight,
+					 height,
+					 bust,
+					 the_waist,
+					 hipline,
+					 shoulder_width,
+					 clothing_length,
+					 trousers_length)){
+				me.setCode(200);
+				me.setMessage("保存用户参数成功！");
+				me.setData(null);
+			}else{
+				me.setCode(-11);//返回给前端程序代码
+				me.setMessage("保存用户参数失败，请重试。");//返回给用户看
+				me.setData(null);
+				
 			}
 			
-		printWriter.print(JSON.toJSONString(tMessage));
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		out.println(JSON.toJSONString(me));
+		
 	}
 
 	/**
@@ -99,3 +122,4 @@ public class Select_shopcar_by_useridServlet extends HttpServlet {
 	}
 
 }
+

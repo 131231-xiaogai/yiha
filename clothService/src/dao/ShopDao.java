@@ -11,6 +11,7 @@ import bean.DBBean;
 import bean.GoodBean;
 import bean.Shooping_carBean;
 import bean.ShopBean;
+import bean.UsersBean;
 
 public class ShopDao {
 	static Connection connection=DBBean.getConn();  //创建连接
@@ -57,6 +58,31 @@ public class ShopDao {
 		}
 		return flag;	
 	}
+	//select_user_byShopId
+	public static ShopBean select_user_by_shopID(String shop_id) throws SQLException{
+		
+		ShopBean shopBean=new ShopBean();
+		
+		String sql="SELECT * FROM shop WHERE shop_id= ?";
+		preparedStatement=connection.prepareStatement(sql);
+		preparedStatement.setString(1, shop_id);
+		resultSet=preparedStatement.executeQuery();
+		
+		if(resultSet!=null){
+			while(resultSet.next()){
+				shopBean.setShop_id(resultSet.getString("shop_id"));
+				shopBean.setShop_name(resultSet.getString("shop_name"));
+				shopBean.setShop_dresss(resultSet.getString("shop_dresss"));
+				shopBean.setShop_score(resultSet.getString("shop_score"));
+				shopBean.setShop_phone(resultSet.getString("shop_phone"));
+				shopBean.setShop_regist_time(resultSet.getString("shop_regist_time"));
+				shopBean.setUser_id(resultSet.getString("user_id"));		
+				//usersBeans.add(usersBean);	
+			}
+		}
+		return shopBean;
+	}
+	
 		
 	
 }

@@ -92,8 +92,9 @@ public class PublicgoodServlet extends HttpServlet {
 						goodBean.setType_id(content);
 					}else if ("type_activity_id".equals(itemNameString)) {
 						goodBean.setType_activity_id(content);
+					}else if ("add_number".equals(itemNameString)) {
+						goodBean.setGoods_number(content);
 					}
-                    
                     
                 } else {
                     File tempFile = new File(request.getSession().getServletContext().getRealPath("/") + "images" + File.separator
@@ -114,15 +115,18 @@ public class PublicgoodServlet extends HttpServlet {
         try {
             GoodDao goodDao = new GoodDao();
             boolean addFlag = GoodDao.addgood(
-            		goodBean.getGood_img(),
-            		goodBean.getGoods_name(),
-            		goodBean.getGoods_price(),
-            		goodBean.getGoods_yajin(),
-            		goodBean.getSize(),
-            		goodBean.getShop_id(),
-            		goodBean.getShop_name(),
-                    goodBean.getType_id(),
-                    goodBean.getType_activity_id());
+            		goodBean.getGood_img(),//1
+            		goodBean.getGoods_name(),//2
+            		goodBean.getGoods_price(),//3
+            		goodBean.getGoods_yajin(),//4
+            		goodBean.getSize(),//5
+            		goodBean.getShop_id(),//6
+            		goodBean.getShop_name(),//7
+                    goodBean.getType_id(),//8
+                    goodBean.getType_activity_id(),//9
+                    goodBean.getGoods_number()//10
+                    );
+	
             if (addFlag) {
             	message.setCode(200);
                 message.setData(null);
