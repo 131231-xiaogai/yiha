@@ -46,6 +46,7 @@ public class OrderDao {
 				orderBean.setShop_id(resultSet.getString("shop_id"));
 				orderBean.setOrder_code(resultSet.getString("order_code"));
 				orderBean.setGoods_yajin(resultSet.getString("goods_yajin"));
+				orderBean.setEvaluate_status(resultSet.getString("evaluate_status"));
 				orderBeans.add(orderBean);
 			}
 		}
@@ -83,6 +84,7 @@ public class OrderDao {
 				orderBean.setShop_id(resultSet.getString("shop_id"));
 				orderBean.setOrder_code(resultSet.getString("order_code"));
 				orderBean.setGoods_yajin(resultSet.getString("goods_yajin"));
+				orderBean.setEvaluate_status(resultSet.getString("evaluate_status"));
 				orderBeans.add(orderBean);
 			}
 		}
@@ -105,12 +107,29 @@ public class OrderDao {
 	}
 	
 	//add_order //private String order_code;
-	public static boolean add_order(String order_rent_validation_time,String order_rent_finesh_time,
-			String order_creat_time,String order_getgoods_time,String order_status,String order_remark,
-			String user_id,String goods_id,String address,String deliver,String good_name,String good_number,
-			String good_price,String total_price,String good_img,String shop_id,String order_code,String goods_yajin)throws SQLException  {
+	public static boolean add_order(
+			String order_rent_validation_time,
+			String order_rent_finesh_time,
+			String order_creat_time,
+			String order_getgoods_time,
+			String order_status,
+			String order_remark,
+			String user_id,
+			String goods_id,
+			String address,
+			String deliver,
+			String good_name,
+			String good_number,
+			String good_price,
+			String total_price,
+			String good_img,
+			String shop_id,
+			String order_code,
+			String goods_yajin,
+			String evaluate_status)throws SQLException  {
 		
 		boolean flag=false;
+		
 		String sql = " insert into `order`"
 				+ "(order_rent_validation_time,"
 				+ "order_rent_finesh_time,"
@@ -129,8 +148,9 @@ public class OrderDao {
 				+ "good_img,"
 				+ "shop_id,"
 				+"order_code,"
-				+ "goods_yajin) "
-				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "goods_yajin,"
+				+ "evaluate_status) "
+				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		//
 		preparedStatement=connection.prepareStatement(sql);
 		preparedStatement.setString(1, order_rent_validation_time);
@@ -151,7 +171,7 @@ public class OrderDao {
 		preparedStatement.setString(16, shop_id);
 		preparedStatement.setString(17, order_code);
 		preparedStatement.setString(18, goods_yajin);
-		
+		preparedStatement.setString(19, evaluate_status);
 		int results =preparedStatement.executeUpdate();//更新
 		if(results ==1){
 			flag=true;
@@ -188,11 +208,132 @@ public class OrderDao {
 				orderBean.setShop_id(resultSet.getString("shop_id"));
 				orderBean.setOrder_code(resultSet.getString("order_code"));
 				orderBean.setGoods_yajin(resultSet.getString("goods_yajin"));
-				
+				orderBean.setEvaluate_status(resultSet.getString("evaluate_status"));
 				orderBeans.add(orderBean);
 			}
 		}
 		return orderBeans;
 	}
+	//select_order_by_UseridAndOrderStstus_evaluate_status
+	public static List<OrderBean> select_order_by_UseridAndOrderStstus_evaluate_status(String user_id,String order_status,String evaluate_status) throws SQLException{
+		List<OrderBean> orderBeans=new ArrayList<OrderBean>();
+		String sql="SELECT * FROM `order` WHERE user_id= ? AND order_status= ? and evaluate_status=?";
+		preparedStatement=connection.prepareStatement(sql);
+		preparedStatement.setString(1, user_id);
+		preparedStatement.setString(2, order_status);
+		preparedStatement.setString(3, evaluate_status);
+		resultSet=preparedStatement.executeQuery();
+		if(resultSet!=null){
+			while(resultSet.next()){
+				OrderBean orderBean =new OrderBean();
+				orderBean.setOrder_id(resultSet.getString("order_id"));
+				orderBean.setOrder_rent_validation_time(resultSet.getString("order_rent_validation_time"));
+				orderBean.setOrder_rent_finesh_time(resultSet.getString("order_rent_finesh_time"));
+				orderBean.setOrder_creat_time(resultSet.getString("order_creat_time"));
+				orderBean.setOrder_getgoods_time(resultSet.getString("order_getgoods_time"));
+				orderBean.setOrder_status(resultSet.getString("order_status"));
+				orderBean.setOrder_remark(resultSet.getString("order_remark"));
+				orderBean.setUser_id(resultSet.getString("user_id"));
+				orderBean.setGoods_id(resultSet.getString("goods_id"));
+				orderBean.setAddress(resultSet.getString("address"));
+				orderBean.setDeliver(resultSet.getString("deliver"));
+				orderBean.setGood_name(resultSet.getString("good_name"));
+				orderBean.setGood_number(resultSet.getString("good_number"));
+				orderBean.setGood_price(resultSet.getString("good_price"));
+				orderBean.setTotal_price(resultSet.getString("total_price"));
+				orderBean.setGood_img(resultSet.getString("good_img"));
+				orderBean.setShop_id(resultSet.getString("shop_id"));
+				orderBean.setOrder_code(resultSet.getString("order_code"));
+				orderBean.setGoods_yajin(resultSet.getString("goods_yajin"));
+				orderBean.setEvaluate_status(resultSet.getString("evaluate_status"));
+				orderBeans.add(orderBean);
+			}
+		}
+		return orderBeans;
+	}
+	
+	//updata_Order_evaluateStatus
+public static boolean updata_Order_evaluateStatus(String order_id,String evaluate_status )throws SQLException  {
+		
+		boolean flag=false;
+		String sql = "UPDATE `order` SET evaluate_status=? WHERE order_id=?";
+		preparedStatement=connection.prepareStatement(sql);
+		preparedStatement.setString(1, evaluate_status);
+		preparedStatement.setString(2, order_id);
+		int results =preparedStatement.executeUpdate();//更新
+		if(results ==1){
+			flag=true;
+		}
+		return flag;		
+	}
+public static List<OrderBean> select_allOrder_byUserid(String user_id) throws SQLException{
+	List<OrderBean> orderBeans=new ArrayList<OrderBean>();
+	String sql="SELECT * FROM `order` WHERE user_id= ? ";
+	preparedStatement=connection.prepareStatement(sql);
+	preparedStatement.setString(1, user_id);
+	resultSet=preparedStatement.executeQuery();
+	if(resultSet!=null){
+		while(resultSet.next()){
+			OrderBean orderBean =new OrderBean();
+			orderBean.setOrder_id(resultSet.getString("order_id"));
+			orderBean.setOrder_rent_validation_time(resultSet.getString("order_rent_validation_time"));
+			orderBean.setOrder_rent_finesh_time(resultSet.getString("order_rent_finesh_time"));
+			orderBean.setOrder_creat_time(resultSet.getString("order_creat_time"));
+			orderBean.setOrder_getgoods_time(resultSet.getString("order_getgoods_time"));
+			orderBean.setOrder_status(resultSet.getString("order_status"));
+			orderBean.setOrder_remark(resultSet.getString("order_remark"));
+			orderBean.setUser_id(resultSet.getString("user_id"));
+			orderBean.setGoods_id(resultSet.getString("goods_id"));
+			orderBean.setAddress(resultSet.getString("address"));
+			orderBean.setDeliver(resultSet.getString("deliver"));
+			orderBean.setGood_name(resultSet.getString("good_name"));
+			orderBean.setGood_number(resultSet.getString("good_number"));
+			orderBean.setGood_price(resultSet.getString("good_price"));
+			orderBean.setTotal_price(resultSet.getString("total_price"));
+			orderBean.setGood_img(resultSet.getString("good_img"));
+			orderBean.setShop_id(resultSet.getString("shop_id"));
+			orderBean.setOrder_code(resultSet.getString("order_code"));
+			orderBean.setGoods_yajin(resultSet.getString("goods_yajin"));
+			orderBean.setEvaluate_status(resultSet.getString("evaluate_status"));
+			orderBeans.add(orderBean);
+		}
+	}
+	return orderBeans;
+}
+
+public static List<OrderBean> select_allOrder_byShopId(String shop_id) throws SQLException{
+	List<OrderBean> orderBeans=new ArrayList<OrderBean>();
+	String sql="SELECT * FROM `order` WHERE shop_id= ? ";
+	preparedStatement=connection.prepareStatement(sql);
+	preparedStatement.setString(1, shop_id);
+	resultSet=preparedStatement.executeQuery();
+	if(resultSet!=null){
+		while(resultSet.next()){
+			OrderBean orderBean =new OrderBean();
+			orderBean.setOrder_id(resultSet.getString("order_id"));
+			orderBean.setOrder_rent_validation_time(resultSet.getString("order_rent_validation_time"));
+			orderBean.setOrder_rent_finesh_time(resultSet.getString("order_rent_finesh_time"));
+			orderBean.setOrder_creat_time(resultSet.getString("order_creat_time"));
+			orderBean.setOrder_getgoods_time(resultSet.getString("order_getgoods_time"));
+			orderBean.setOrder_status(resultSet.getString("order_status"));
+			orderBean.setOrder_remark(resultSet.getString("order_remark"));
+			orderBean.setUser_id(resultSet.getString("user_id"));
+			orderBean.setGoods_id(resultSet.getString("goods_id"));
+			orderBean.setAddress(resultSet.getString("address"));
+			orderBean.setDeliver(resultSet.getString("deliver"));
+			orderBean.setGood_name(resultSet.getString("good_name"));
+			orderBean.setGood_number(resultSet.getString("good_number"));
+			orderBean.setGood_price(resultSet.getString("good_price"));
+			orderBean.setTotal_price(resultSet.getString("total_price"));
+			orderBean.setGood_img(resultSet.getString("good_img"));
+			orderBean.setShop_id(resultSet.getString("shop_id"));
+			orderBean.setOrder_code(resultSet.getString("order_code"));
+			orderBean.setGoods_yajin(resultSet.getString("goods_yajin"));
+			orderBean.setEvaluate_status(resultSet.getString("evaluate_status"));
+			orderBeans.add(orderBean);
+		}
+	}
+	return orderBeans;
+}
 	
 }

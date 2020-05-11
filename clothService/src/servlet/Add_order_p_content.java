@@ -13,15 +13,15 @@ import bean.Message;
 
 import com.alibaba.fastjson.JSON;
 
-import dao.ConsumerDao;
+import dao.EvaluateDao;
 import dao.EventDao;
 
-public class Insert_user_bodyData extends HttpServlet {
+public class Add_order_p_content extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public Insert_user_bodyData() {
+	public Add_order_p_content() {
 		super();
 	}
 
@@ -68,38 +68,25 @@ public class Insert_user_bodyData extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		
-		String user_id= request.getParameter("user_id");
-		String weight= request.getParameter("weight");
-		String height= request.getParameter("height");
-		String bust=request.getParameter("bust");
-		String the_waist= request.getParameter("the_waist");
-		String hipline= request.getParameter("hipline");
-		String shoulder_width= request.getParameter("shoulder_width");
-		String clothing_length=request.getParameter("clothing_length");
-		String trousers_length= request.getParameter("trousers_length");
+		String p_content= request.getParameter("p_content");
+		String order_id= request.getParameter("order_id");
+
+		String good_id= request.getParameter("good_id");
+		String user_id=request.getParameter("user_id");
+		String shop_id= request.getParameter("shop_id");
 		
-		
-		System.out.println("创建新的用户参数的用户ID ："+user_id);
+		System.out.println("添加事件用户ID ："+user_id);
 		
 		Message me=new Message();
 		
 		try {
-			if(ConsumerDao.insert_user_bodyData( 
-					 user_id,
-					 weight,
-					 height,
-					 bust,
-					 the_waist,
-					 hipline,
-					 shoulder_width,
-					 clothing_length,
-					 trousers_length)){
+			if(EvaluateDao.add_order_p_content(p_content,order_id, good_id,user_id,shop_id)){
 				me.setCode(200);
-				me.setMessage("保存用户参数成功！");
+				me.setMessage("保存评价成功！");
 				me.setData(null);
 			}else{
 				me.setCode(-11);//返回给前端程序代码
-				me.setMessage("保存用户参数失败，请重试。");//返回给用户看
+				me.setMessage("保存评价失败，请重试。");//返回给用户看
 				me.setData(null);
 				
 			}
@@ -122,4 +109,3 @@ public class Insert_user_bodyData extends HttpServlet {
 	}
 
 }
-

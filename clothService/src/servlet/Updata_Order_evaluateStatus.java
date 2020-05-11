@@ -13,15 +13,14 @@ import bean.Message;
 
 import com.alibaba.fastjson.JSON;
 
-import dao.ConsumerDao;
-import dao.EventDao;
+import dao.OrderDao;
 
-public class Insert_user_bodyData extends HttpServlet {
+public class Updata_Order_evaluateStatus extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public Insert_user_bodyData() {
+	public Updata_Order_evaluateStatus() {
 		super();
 	}
 
@@ -58,7 +57,6 @@ public class Insert_user_bodyData extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
-	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -68,38 +66,22 @@ public class Insert_user_bodyData extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		
-		String user_id= request.getParameter("user_id");
-		String weight= request.getParameter("weight");
-		String height= request.getParameter("height");
-		String bust=request.getParameter("bust");
-		String the_waist= request.getParameter("the_waist");
-		String hipline= request.getParameter("hipline");
-		String shoulder_width= request.getParameter("shoulder_width");
-		String clothing_length=request.getParameter("clothing_length");
-		String trousers_length= request.getParameter("trousers_length");
-		
-		
-		System.out.println("创建新的用户参数的用户ID ："+user_id);
+		String order_id= request.getParameter("order_id");
+		//String contact_name=new String(request.getParameter("contact_name").getBytes("ISO8859-1"),"UTF-8");
+		String evaluate_status= request.getParameter("evaluate_status");
+
+		System.out.println("操作的订单编号为"+order_id+"订单评价状态为"+evaluate_status);
 		
 		Message me=new Message();
 		
 		try {
-			if(ConsumerDao.insert_user_bodyData( 
-					 user_id,
-					 weight,
-					 height,
-					 bust,
-					 the_waist,
-					 hipline,
-					 shoulder_width,
-					 clothing_length,
-					 trousers_length)){
+			if(OrderDao.updata_Order_evaluateStatus(order_id, evaluate_status)){
 				me.setCode(200);
-				me.setMessage("保存用户参数成功！");
+				me.setMessage("修改订单评价状态成功！");
 				me.setData(null);
 			}else{
 				me.setCode(-11);//返回给前端程序代码
-				me.setMessage("保存用户参数失败，请重试。");//返回给用户看
+				me.setMessage("修改订单评价状态失败，请重试。");//返回给用户看
 				me.setData(null);
 				
 			}
@@ -122,4 +104,3 @@ public class Insert_user_bodyData extends HttpServlet {
 	}
 
 }
-

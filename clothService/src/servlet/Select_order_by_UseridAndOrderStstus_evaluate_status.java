@@ -3,25 +3,27 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Message;
+import bean.OrderBean;
+import bean.TMessage;
 
 import com.alibaba.fastjson.JSON;
 
-import dao.ConsumerDao;
-import dao.EventDao;
+import dao.OrderDao;
 
-public class Insert_user_bodyData extends HttpServlet {
+public class Select_order_by_UseridAndOrderStstus_evaluate_status extends
+		HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public Insert_user_bodyData() {
+	public Select_order_by_UseridAndOrderStstus_evaluate_status() {
 		super();
 	}
 
@@ -58,58 +60,39 @@ public class Insert_user_bodyData extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
-	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;utf-8");
+		//String user_id,String order_status
 		
-		PrintWriter out = response.getWriter();
-		
-		String user_id= request.getParameter("user_id");
-		String weight= request.getParameter("weight");
-		String height= request.getParameter("height");
-		String bust=request.getParameter("bust");
-		String the_waist= request.getParameter("the_waist");
-		String hipline= request.getParameter("hipline");
-		String shoulder_width= request.getParameter("shoulder_width");
-		String clothing_length=request.getParameter("clothing_length");
-		String trousers_length= request.getParameter("trousers_length");
+		String user_id=request.getParameter("user_id");
+		String order_status=request.getParameter("order_status");
+		String evaluate_status=request.getParameter("evaluate_status");
+		System.out.println("用户"+user_id+"查询订单状态为"+order_status+"的订单");
 		
 		
-		System.out.println("创建新的用户参数的用户ID ："+user_id);
+		TMessage  <List<OrderBean>> tMessage=new TMessage();
 		
-		Message me=new Message();
+		PrintWriter printWriter=response.getWriter();
 		
 		try {
-			if(ConsumerDao.insert_user_bodyData( 
-					 user_id,
-					 weight,
-					 height,
-					 bust,
-					 the_waist,
-					 hipline,
-					 shoulder_width,
-					 clothing_length,
-					 trousers_length)){
-				me.setCode(200);
-				me.setMessage("保存用户参数成功！");
-				me.setData(null);
-			}else{
-				me.setCode(-11);//返回给前端程序代码
-				me.setMessage("保存用户参数失败，请重试。");//返回给用户看
-				me.setData(null);
-				
+			List<OrderBean> orderBeans = OrderDao.select_order_by_UseridAndOrderStstus_evaluate_status(user_id, order_status,evaluate_status);
+				tMessage.setCode(200);
+				tMessage.setMessage("查询成功");
+				tMessage.setData(orderBeans);   //存放要返回给前端显示的数据
+			} catch (SQLException e) {
+				// TODO 自动生成的 catch 块
+				tMessage.setCode(-11);
+				tMessage.setMessage("查询失败");
+				tMessage.setData(null);
+				e.printStackTrace();
 			}
 			
-		} catch (SQLException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
-		out.println(JSON.toJSONString(me));
 		
+		printWriter.print(JSON.toJSONString(tMessage));
 	}
 
 	/**
@@ -122,4 +105,3 @@ public class Insert_user_bodyData extends HttpServlet {
 	}
 
 }
-

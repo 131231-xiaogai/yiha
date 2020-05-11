@@ -308,6 +308,48 @@
     <servlet-name>Update_user_role</servlet-name>
     <servlet-class>servlet.Update_user_role</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_order_by_UseridAndOrderStstus_evaluate_status</servlet-name>
+    <servlet-class>servlet.Select_order_by_UseridAndOrderStstus_evaluate_status</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Add_order_p_content</servlet-name>
+    <servlet-class>servlet.Add_order_p_content</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Updata_Order_evaluateStatus</servlet-name>
+    <servlet-class>servlet.Updata_Order_evaluateStatus</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Selece_shop_evaluate</servlet-name>
+    <servlet-class>servlet.Selece_shop_evaluate</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_allOrder_byUserid</servlet-name>
+    <servlet-class>servlet.Select_allOrder_byUserid</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_allOrder_byShopId</servlet-name>
+    <servlet-class>servlet.Select_allOrder_byShopId</servlet-class>
+  </servlet>
+
+
+
+
+
+
 
 
 
@@ -535,6 +577,30 @@
   <servlet-mapping>
     <servlet-name>Update_user_role</servlet-name>
     <url-pattern>/Update_user_role</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_order_by_UseridAndOrderStstus_evaluate_status</servlet-name>
+    <url-pattern>/Select_order_by_UseridAndOrderStstus_evaluate_status</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Add_order_p_content</servlet-name>
+    <url-pattern>/Add_order_p_content</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Updata_Order_evaluateStatus</servlet-name>
+    <url-pattern>/Updata_Order_evaluateStatus</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Selece_shop_evaluate</servlet-name>
+    <url-pattern>/Selece_shop_evaluate</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_allOrder_byUserid</servlet-name>
+    <url-pattern>/Select_allOrder_byUserid</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_allOrder_byShopId</servlet-name>
+    <url-pattern>/Select_allOrder_byShopId</url-pattern>
   </servlet-mapping>
   
   

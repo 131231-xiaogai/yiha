@@ -95,6 +95,15 @@ public class PublicgoodServlet extends HttpServlet {
 					}else if ("add_number".equals(itemNameString)) {
 						goodBean.setGoods_number(content);
 					}
+					else if ("Clothing_length".equals(itemNameString)) {
+						goodBean.setClothing_length(content);
+					}else if ("Sleeve_length".equals(itemNameString)) {
+						goodBean.setSleeve_length(content);
+					}else if ("Shoulder_width".equals(itemNameString)) {
+						goodBean.setShoulder_width(content);
+					}else if ("trousers_length".equals(itemNameString)) {
+						goodBean.setTrousers_length(content);
+					}
                     
                 } else {
                     File tempFile = new File(request.getSession().getServletContext().getRealPath("/") + "images" + File.separator
