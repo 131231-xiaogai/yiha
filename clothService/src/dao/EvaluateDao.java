@@ -72,6 +72,29 @@ public class EvaluateDao {
 		}
 		return evaluateBeans;
 	}
+	
+	//select_evaluate_by_orderid
+	public static EvaluateBean select_evaluate_by_orderid(String order_id) throws SQLException{
+		
+		EvaluateBean evaluateBean =new EvaluateBean();
+		
+		String sql="SELECT * FROM evaluate WHERE order_id= ?";
+		preparedStatement=connection.prepareStatement(sql);
+		preparedStatement.setString(1, order_id);
+		resultSet=preparedStatement.executeQuery();
+		
+		if(resultSet!=null){
+			while(resultSet.next()){
+				evaluateBean.setId(resultSet.getString("id"));
+				evaluateBean.setP_content(resultSet.getString("p_content"));
+				evaluateBean.setOrder_id(resultSet.getString("order_id"));
+				evaluateBean.setGood_id(resultSet.getString("good_id"));
+				evaluateBean.setUser_id(resultSet.getString("user_id"));
+				evaluateBean.setShop_id(resultSet.getString("shop_id"));		
+			}
+		}
+		return evaluateBean;
+	}
 
 
 }

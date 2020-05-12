@@ -335,5 +335,116 @@ public static List<OrderBean> select_allOrder_byShopId(String shop_id) throws SQ
 	}
 	return orderBeans;
 }
-	
+	//select_shopOrder_byMonth
+public static List<OrderBean> select_shopOrder_byMonth(String shop_id,String order_creat_time) throws SQLException{
+	List<OrderBean> orderBeans=new ArrayList<OrderBean>();
+	String sql="SELECT * FROM `order` WHERE  shop_id =? AND order_creat_time LIKE ? ";
+
+	preparedStatement=connection.prepareStatement(sql);
+	preparedStatement.setString(1, shop_id);
+	preparedStatement.setString(2, "%"+order_creat_time+"%");
+	resultSet=preparedStatement.executeQuery();
+	if(resultSet!=null){
+		while(resultSet.next()){
+			OrderBean orderBean =new OrderBean();
+			orderBean.setOrder_id(resultSet.getString("order_id"));
+			orderBean.setOrder_rent_validation_time(resultSet.getString("order_rent_validation_time"));
+			orderBean.setOrder_rent_finesh_time(resultSet.getString("order_rent_finesh_time"));
+			orderBean.setOrder_creat_time(resultSet.getString("order_creat_time"));
+			orderBean.setOrder_getgoods_time(resultSet.getString("order_getgoods_time"));
+			orderBean.setOrder_status(resultSet.getString("order_status"));
+			orderBean.setOrder_remark(resultSet.getString("order_remark"));
+			orderBean.setUser_id(resultSet.getString("user_id"));
+			orderBean.setGoods_id(resultSet.getString("goods_id"));
+			orderBean.setAddress(resultSet.getString("address"));
+			orderBean.setDeliver(resultSet.getString("deliver"));
+			orderBean.setGood_name(resultSet.getString("good_name"));
+			orderBean.setGood_number(resultSet.getString("good_number"));
+			orderBean.setGood_price(resultSet.getString("good_price"));
+			orderBean.setTotal_price(resultSet.getString("total_price"));
+			orderBean.setGood_img(resultSet.getString("good_img"));
+			orderBean.setShop_id(resultSet.getString("shop_id"));
+			orderBean.setOrder_code(resultSet.getString("order_code"));
+			orderBean.setGoods_yajin(resultSet.getString("goods_yajin"));
+			orderBean.setEvaluate_status(resultSet.getString("evaluate_status"));
+			orderBeans.add(orderBean);
+		}
+	}
+	return orderBeans;
+}
+//select_order_byShopidAndOrderStstus_likeName
+public static List<OrderBean> select_order_byShopidAndOrderStstus_likeName(String shop_id,String order_status,String good_name) throws SQLException{
+	List<OrderBean> orderBeans=new ArrayList<OrderBean>();
+	String sql="SELECT * FROM `order` WHERE shop_id= ? AND order_status= ? AND good_name LIKE ?";
+	preparedStatement=connection.prepareStatement(sql);
+	preparedStatement.setString(1, shop_id);
+	preparedStatement.setString(2, order_status);
+	preparedStatement.setString(3, "%"+good_name+"%");
+	resultSet=preparedStatement.executeQuery();
+	if(resultSet!=null){
+		while(resultSet.next()){
+			OrderBean orderBean =new OrderBean();
+			orderBean.setOrder_id(resultSet.getString("order_id"));
+			orderBean.setOrder_rent_validation_time(resultSet.getString("order_rent_validation_time"));
+			orderBean.setOrder_rent_finesh_time(resultSet.getString("order_rent_finesh_time"));
+			orderBean.setOrder_creat_time(resultSet.getString("order_creat_time"));
+			orderBean.setOrder_getgoods_time(resultSet.getString("order_getgoods_time"));
+			orderBean.setOrder_status(resultSet.getString("order_status"));
+			orderBean.setOrder_remark(resultSet.getString("order_remark"));
+			orderBean.setUser_id(resultSet.getString("user_id"));
+			orderBean.setGoods_id(resultSet.getString("goods_id"));
+			orderBean.setAddress(resultSet.getString("address"));
+			orderBean.setDeliver(resultSet.getString("deliver"));
+			orderBean.setGood_name(resultSet.getString("good_name"));
+			orderBean.setGood_number(resultSet.getString("good_number"));
+			orderBean.setGood_price(resultSet.getString("good_price"));
+			orderBean.setTotal_price(resultSet.getString("total_price"));
+			orderBean.setGood_img(resultSet.getString("good_img"));
+			orderBean.setShop_id(resultSet.getString("shop_id"));
+			orderBean.setOrder_code(resultSet.getString("order_code"));
+			orderBean.setGoods_yajin(resultSet.getString("goods_yajin"));
+			orderBean.setEvaluate_status(resultSet.getString("evaluate_status"));
+			orderBeans.add(orderBean);
+		}
+	}
+	return orderBeans;
+}
+//select_order_byUseridAndOrderStstus_likeName
+public static List<OrderBean> select_order_byUseridAndOrderStstus_likeName(String user_id,String order_status,String good_name) throws SQLException{
+	List<OrderBean> orderBeans=new ArrayList<OrderBean>();
+	String sql="SELECT * FROM `order` WHERE user_id= ? AND order_status= ? AND good_name LIKE ?";
+	preparedStatement=connection.prepareStatement(sql);
+	preparedStatement.setString(1, user_id);
+	preparedStatement.setString(2, order_status);
+	preparedStatement.setString(3, "%"+good_name+"%");
+	resultSet=preparedStatement.executeQuery();
+	if(resultSet!=null){
+		while(resultSet.next()){
+			OrderBean orderBean =new OrderBean();
+			orderBean.setOrder_id(resultSet.getString("order_id"));
+			orderBean.setOrder_rent_validation_time(resultSet.getString("order_rent_validation_time"));
+			orderBean.setOrder_rent_finesh_time(resultSet.getString("order_rent_finesh_time"));
+			orderBean.setOrder_creat_time(resultSet.getString("order_creat_time"));
+			orderBean.setOrder_getgoods_time(resultSet.getString("order_getgoods_time"));
+			orderBean.setOrder_status(resultSet.getString("order_status"));
+			orderBean.setOrder_remark(resultSet.getString("order_remark"));
+			orderBean.setUser_id(resultSet.getString("user_id"));
+			orderBean.setGoods_id(resultSet.getString("goods_id"));
+			orderBean.setAddress(resultSet.getString("address"));
+			orderBean.setDeliver(resultSet.getString("deliver"));
+			orderBean.setGood_name(resultSet.getString("good_name"));
+			orderBean.setGood_number(resultSet.getString("good_number"));
+			orderBean.setGood_price(resultSet.getString("good_price"));
+			orderBean.setTotal_price(resultSet.getString("total_price"));
+			orderBean.setGood_img(resultSet.getString("good_img"));
+			orderBean.setShop_id(resultSet.getString("shop_id"));
+			orderBean.setOrder_code(resultSet.getString("order_code"));
+			orderBean.setGoods_yajin(resultSet.getString("goods_yajin"));
+			orderBean.setEvaluate_status(resultSet.getString("evaluate_status"));
+			orderBeans.add(orderBean);
+		}
+	}
+	return orderBeans;
+}
+
 }

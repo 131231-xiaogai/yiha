@@ -133,18 +133,22 @@ public class PublicgoodServlet extends HttpServlet {
             		goodBean.getShop_name(),//7
                     goodBean.getType_id(),//8
                     goodBean.getType_activity_id(),//9
-                    goodBean.getGoods_number()//10
+                    goodBean.getGoods_number(),//10
+                    goodBean.getClothing_length(),
+            		goodBean.getSleeve_length(),
+            		goodBean.getShoulder_width(),
+            		goodBean.getTrousers_length()
                     );
 	
             if (addFlag) {
             	message.setCode(200);
                 message.setData(null);
-                message.setMessage("添加成功");
+                message.setMessage("添加商品成功");
                 out.print(JSON.toJSONString(message));
             } else {
                 message.setCode(-11);
                 message.setData("null");
-                message.setMessage("添加失败");
+                message.setMessage("添加商品失败");
                 out.print(JSON.toJSONString(message));
             }
         } catch (Exception e) {
