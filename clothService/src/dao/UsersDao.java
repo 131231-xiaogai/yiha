@@ -221,7 +221,35 @@ public static boolean update_user_role(String uerid,String role_id)throws SQLExc
 	
 	return flag;	
 }
-
+//select_all_user_likeNane
+public static List<UsersBean> select_all_user_likeNane(String role_id,String role_status,String nickname) throws SQLException{
+	
+	List<UsersBean> usersBeans=new ArrayList<UsersBean>();
+	
+	String sql="select * from user WHERE role_id=? and role_status=? AND nickname LIKE ? ";
+	preparedStatement=connection.prepareStatement(sql);
+	preparedStatement.setString(1, role_id);
+	preparedStatement.setString(2, role_status);
+	preparedStatement.setString(3, "%"+nickname+"%");
+	resultSet=preparedStatement.executeQuery();
+	
+	if(resultSet!=null){
+		while(resultSet.next()){
+			UsersBean usersBean=new UsersBean();
+			usersBean.setUerid(resultSet.getString("uerid"));
+			usersBean.setPhone(resultSet.getString("phone"));
+			usersBean.setPassword(resultSet.getString("password"));
+			usersBean.setNickname(resultSet.getString("nickname"));
+			usersBean.setSex(resultSet.getString("sex"));
+			usersBean.setRole_status(resultSet.getString("role_status"));
+			usersBean.setBalance(resultSet.getString("balance"));
+			usersBean.setId_number(resultSet.getString("id_number"));
+			usersBean.setRole_id(resultSet.getString("role_id"));
+			usersBeans.add(usersBean);
+		}
+	}
+	return usersBeans;
+}
 
 
 }

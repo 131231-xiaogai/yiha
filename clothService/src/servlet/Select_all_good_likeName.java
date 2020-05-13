@@ -3,25 +3,26 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.GoodBean;
+import bean.TMessage;
+
 import com.alibaba.fastjson.JSON;
 
-import dao.AddressDao;
 import dao.GoodDao;
-import dao.UsersDao;
-import bean.Message;
 
-public class Update_good_by_goodIdServlet extends HttpServlet {
+public class Select_all_good_likeName extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public Update_good_by_goodIdServlet() {
+	public Select_all_good_likeName() {
 		super();
 	}
 
@@ -64,41 +65,37 @@ public class Update_good_by_goodIdServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;utf-8");
+		//String user_id,String order_status
 		
-		PrintWriter out = response.getWriter();
-		
-		String goods_id= request.getParameter("goods_id");
 		String goods_name=new String(request.getParameter("goods_name").getBytes("ISO8859-1"),"UTF-8");
-		String goods_price= request.getParameter("goods_price");
-		String goods_yajin=request.getParameter("goods_yajin");
-		String goods_number=request.getParameter("goods_number");
-		String size= request.getParameter("size");
-		String clothing_length= request.getParameter("clothing_length");
-		String sleeve_length= request.getParameter("sleeve_length");
-		String shoulder_width= request.getParameter("shoulder_width");
-		String trousers_length= request.getParameter("trousers_length");
 
-		System.out.println(goods_name);
+		System.out.println("查询商品名"+goods_name);
 		
-		Message me=new Message();
+		
+		TMessage  <List<GoodBean>> tMessage=new TMessage();
+		
+		PrintWriter printWriter=response.getWriter();
+		
 		try {
-			if(GoodDao.update_good_by_goodId(goods_id, goods_name,goods_price,goods_yajin,goods_number,size,clothing_length,
-					sleeve_length,shoulder_width,trousers_length)){
-				me.setCode(200);
-				me.setMessage("保存成功！");
-				me.setData(null);
-			}else{
-				me.setCode(-11);//返回给前端程序代码
-				me.setMessage("保存失败，请重试。");//返回给用户看
-				me.setData(null);
+			List<GoodBean> goodBeans = GoodDao.select_all_good_likeName(goods_name);
+			for (int i = 0; i < goodBeans.size(); i++) {
+				goodBeans.get(i).setGood_img(request.getRequestURL()
+						.toString().replace(request.getServletPath(),"")+"/images/" + goodBeans.get(i).getGood_img());
+				
+			}
+				tMessage.setCode(200);
+				tMessage.setMessage("查询成功");
+				tMessage.setData(goodBeans);   //存放要返回给前端显示的数据
+			} catch (SQLException e) {
+				// TODO 自动生成的 catch 块
+				tMessage.setCode(-11);
+				tMessage.setMessage("查询失败");
+				tMessage.setData(null);
+				e.printStackTrace();
 			}
 			
-		} catch (SQLException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
-		out.println(JSON.toJSONString(me));
 		
+		printWriter.print(JSON.toJSONString(tMessage));
 	}
 
 	/**

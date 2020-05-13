@@ -20,11 +20,11 @@ public class Shoop_carDao {
 	
 	public static boolean add_to_shopcar(String user_id,String good_number,String goods_id,
 			String shop_id,String good_name,String good_price,String good_img,String shop_name,
-			String add_time,String cancle_time,String shop_car_status,String goods_yajin)throws SQLException  {
+			String add_time,String cancle_time,String shop_car_status,String goods_yajin,String good_size)throws SQLException  {
 		boolean flag=false;
 		
 		String sql = "insert into shooping_car(user_id,good_number,goods_id,shop_id,good_name,"
-				+ "good_price,good_img,shop_name,add_time,cancle_time,shop_car_status,goods_yajin) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "good_price,good_img,shop_name,add_time,cancle_time,shop_car_status,goods_yajin,good_size) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		preparedStatement=connection.prepareStatement(sql);
 		preparedStatement.setString(1, user_id );
 		preparedStatement.setString(2, good_number);
@@ -38,7 +38,8 @@ public class Shoop_carDao {
 		preparedStatement.setString(10, cancle_time);
 		preparedStatement.setString(11, shop_car_status);
 		preparedStatement.setString(12, goods_yajin);
-		int results =preparedStatement.executeUpdate();//更新
+		preparedStatement.setString(13, good_size);
+		int results =preparedStatement.executeUpdate();//更新 good_size
 		if(results ==1){
 			flag=true;
 		}
@@ -69,7 +70,7 @@ public class Shoop_carDao {
 				shooping_carBean.setUser_id(resultSet.getString("user_id"));
 				shooping_carBean.setShop_car_status(resultSet.getString("shop_car_status"));
 				shooping_carBean.setGoods_yajin(resultSet.getString("goods_yajin"));
-				
+				shooping_carBean.setGood_size(resultSet.getString("good_size"));
 				shooping_carBeans.add(shooping_carBean);	
 			}
 		}
