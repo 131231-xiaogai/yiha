@@ -138,7 +138,7 @@ public class GoodDao {
 		preparedStatement.setString(2, goods_name);
 		preparedStatement.setString(3, goods_price);
 		preparedStatement.setString(4, goods_yajin);
-		preparedStatement.setString(5, type_id);
+		preparedStatement.setString(5, size);
 		preparedStatement.setString(6, shop_id);
 		preparedStatement.setString(7, shop_name);
 		preparedStatement.setString(8, type_id);

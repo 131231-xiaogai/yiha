@@ -95,11 +95,11 @@ public class PublicgoodServlet extends HttpServlet {
 					}else if ("add_number".equals(itemNameString)) {
 						goodBean.setGoods_number(content);
 					}
-					else if ("Clothing_length".equals(itemNameString)) {
+					else if ("clothing_length".equals(itemNameString)) {
 						goodBean.setClothing_length(content);
-					}else if ("Sleeve_length".equals(itemNameString)) {
+					}else if ("sleeve_length".equals(itemNameString)) {
 						goodBean.setSleeve_length(content);
-					}else if ("Shoulder_width".equals(itemNameString)) {
+					}else if ("shoulder_width".equals(itemNameString)) {
 						goodBean.setShoulder_width(content);
 					}else if ("trousers_length".equals(itemNameString)) {
 						goodBean.setTrousers_length(content);
