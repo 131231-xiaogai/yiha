@@ -83,7 +83,7 @@ public class add_to_shopcarServlet extends HttpServlet {
 		String shop_car_status= request.getParameter("shop_car_status");
 		String goods_yajin = request.getParameter("goods_yajin");
 		//good_size
-		String good_size = request.getParameter("good_size");
+		String good_size = new String(request.getParameter("good_size").getBytes("ISO8859-1"),"utf-8");
 		System.out.println(user_id);
 		
 		Message me=new Message();
