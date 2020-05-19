@@ -3,25 +3,28 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Message;
+import bean.OrderBean;
+import bean.ShopBean;
+import bean.TMessage;
 
 import com.alibaba.fastjson.JSON;
 
-import dao.EventDao;
-import dao.GoodDao;
+import dao.OrderDao;
+import dao.ShopDao;
 
-public class Update_event_byEventIDServlet extends HttpServlet {
+public class Select_shop_likeaddress extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public Update_event_byEventIDServlet() {
+	public Select_shop_likeaddress() {
 		super();
 	}
 
@@ -64,37 +67,34 @@ public class Update_event_byEventIDServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;utf-8");
+		//String user_id,String order_status
 		
-		PrintWriter out = response.getWriter();
+		String shop_dresss=new String(request.getParameter("shop_dresss").getBytes("ISO8859-1"),"UTF-8");
+
+		//String good_name=new String(request.getParameter("good_name").getBytes("ISO8859-1"),"UTF-8");
+
+		System.out.println("查询店铺内容"+shop_dresss);
 		
-		String event_id= request.getParameter("event_id");
-		String evevt_title=new String(request.getParameter("evevt_title").getBytes("ISO8859-1"),"UTF-8");
-		String event_content=new String(request.getParameter("event_content").getBytes("ISO8859-1"),"UTF-8");
-		String event_start_time= new String(request.getParameter("event_start_time").getBytes("ISO8859-1"),"UTF-8");
-		String event_finish_time=new String(request.getParameter("event_finish_time").getBytes("ISO8859-1"),"UTF-8");
 		
-		System.out.println("事 件 标 题 为 ："+evevt_title);
+		TMessage  <List<ShopBean>> tMessage=new TMessage();
 		
-		Message me=new Message();
+		PrintWriter printWriter=response.getWriter();
 		
 		try {
-			if(EventDao.update_event_byEventID(event_id, evevt_title,event_content,event_start_time,event_finish_time)){
-				me.setCode(200);
-				me.setMessage("保存成功！");
-				me.setData(null);
-			}else{
-				me.setCode(-11);//返回给前端程序代码
-				me.setMessage("保存失败，请重试。");//返回给用户看
-				me.setData(null);
-				
+			List<ShopBean> shopBeans = ShopDao.select_shop_likeaddress(shop_dresss);
+				tMessage.setCode(200);
+				tMessage.setMessage("查询成功");
+				tMessage.setData(shopBeans);   //存放要返回给前端显示的数据
+			} catch (SQLException e) {
+				// TODO 自动生成的 catch 块
+				tMessage.setCode(-11);
+				tMessage.setMessage("查询失败");
+				tMessage.setData(null);
+				e.printStackTrace();
 			}
 			
-		} catch (SQLException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
-		out.println(JSON.toJSONString(me));
 		
+		printWriter.print(JSON.toJSONString(tMessage));
 	}
 
 	/**

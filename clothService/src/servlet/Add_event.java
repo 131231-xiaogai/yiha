@@ -75,8 +75,8 @@ public class Add_event extends HttpServlet {
 		String event_date= request.getParameter("evevt_date");
 		String evevt_title=new String(request.getParameter("evevt_title").getBytes("ISO8859-1"),"UTF-8");
 		String event_content=new String(request.getParameter("event_content").getBytes("ISO8859-1"),"UTF-8");
-		String event_start_time= request.getParameter("event_start_time");
-		String event_finish_time=request.getParameter("event_finish_time");
+		String event_start_time= new String(request.getParameter("event_start_time").getBytes("ISO8859-1"),"UTF-8");
+		String event_finish_time=new String(request.getParameter("event_finish_time").getBytes("ISO8859-1"),"UTF-8");
 		
 		System.out.println("添加事件用户ID ："+user_id);
 		

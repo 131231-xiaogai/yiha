@@ -9,6 +9,7 @@ import java.util.List;
 
 import bean.DBBean;
 import bean.GoodBean;
+import bean.OrderBean;
 import bean.Shooping_carBean;
 import bean.ShopBean;
 import bean.UsersBean;
@@ -81,6 +82,31 @@ public class ShopDao {
 			}
 		}
 		return shopBean;
+	}
+	//select_shop_likeaddress
+public static List<ShopBean> select_shop_likeaddress(String shop_dresss) throws SQLException{
+		
+	List<ShopBean> shopBeans=new ArrayList<ShopBean>();
+		
+		String sql="SELECT * FROM shop WHERE shop_dresss LIKE ?";
+		preparedStatement=connection.prepareStatement(sql);
+		preparedStatement.setString(1, "%"+shop_dresss+"%");
+		resultSet=preparedStatement.executeQuery();
+		
+		if(resultSet!=null){
+			while(resultSet.next()){
+				ShopBean shopBean =new ShopBean();
+				shopBean.setShop_id(resultSet.getString("shop_id"));
+				shopBean.setShop_name(resultSet.getString("shop_name"));
+				shopBean.setShop_dresss(resultSet.getString("shop_dresss"));
+				shopBean.setShop_score(resultSet.getString("shop_score"));
+				shopBean.setShop_phone(resultSet.getString("shop_phone"));
+				shopBean.setShop_regist_time(resultSet.getString("shop_regist_time"));
+				shopBean.setUser_id(resultSet.getString("user_id"));		
+				shopBeans.add(shopBean);	
+			}
+		}
+		return shopBeans;
 	}
 	
 		
