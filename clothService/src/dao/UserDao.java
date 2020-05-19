@@ -46,7 +46,7 @@ public class UserDao {
 				usersBean.setPhone(resultSet.getString("phone"));
 				usersBean.setBalance(resultSet.getString("balance"));
 				usersBean.setId_number(resultSet.getString("id_number"));
-				usersBean.setImage(resultSet.getString("image"));
+				usersBean.setRole_status(resultSet.getString("role_status"));
 				usersBean.setNickname(resultSet.getString("nickname"));
 				usersBean.setSex(resultSet.getString("sex"));
 				usersBean.setUerid(resultSet.getString("uerid"));

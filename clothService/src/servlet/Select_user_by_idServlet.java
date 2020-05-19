@@ -64,12 +64,14 @@ public class Select_user_by_idServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;utf-8");
+		
+		String uerid= request.getParameter("muser_id");
 
 		TMessage  tMessage=new TMessage(); 
 		
 		PrintWriter printWriter=response.getWriter();
 		try {
-			UsersBean usersBean=UsersDao.select_user_by_id();
+			UsersBean usersBean=UsersDao.select_user_by_id(uerid);
 			tMessage.setCode(200);
 			tMessage.setMessage("查询成功");
 			tMessage.setData(usersBean);   //存放要返回给前端显示的数据

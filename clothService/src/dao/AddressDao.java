@@ -45,6 +45,32 @@ public static List<AddressBean> select_address_by_userid(String userid) throws S
 	}
 	return addressBeans;
 }
+//select_address_by_addressId
+public static AddressBean select_address_by_addressId(String address_id) throws SQLException{
+	
+	AddressBean addressBean =new AddressBean();
+	
+	String sql="SELECT * FROM address WHERE address_id= ?";
+	preparedStatement=connection.prepareStatement(sql);
+	preparedStatement.setString(1, address_id);
+	resultSet=preparedStatement.executeQuery();
+	
+	if(resultSet!=null){
+		while(resultSet.next()){
+			
+			addressBean.setAddress_id(resultSet.getString("address_id"));
+			addressBean.setAddress_detail(resultSet.getString("address_detail"));
+			addressBean.setAddress_total(resultSet.getString("address_total"));
+			addressBean.setContact_name(resultSet.getString("contact_name"));
+			addressBean.setContact_phone(resultSet.getString("contact_phone"));
+			addressBean.setCreator_phone(resultSet.getString("creator_phone"));
+			addressBean.setUserid(resultSet.getString("userid"));	
+			
+		}
+	}
+	return addressBean;
+}
+
 
 public static boolean update_user_address(String address_id,String contact_name,String contact_phone,
 		String address_total,String address_detail )throws SQLException  {

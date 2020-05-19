@@ -1,7 +1,9 @@
 package bean;
 
 public class Shooping_carBean {
-	
+
+	private boolean isSelect;
+
 	private String id;
 	private String user_id;
 	private String shop_id;
@@ -13,7 +15,44 @@ public class Shooping_carBean {
 	private String shop_name;
 	private String add_time;
 	private String cancle_time;
-	private String sumbit_time;
+	private String shop_car_status;
+	private String goods_yajin;
+	private String good_size;
+	
+	
+	public String getGood_size() {
+		return good_size;
+	}
+
+	public void setGood_size(String good_size) {
+		this.good_size = good_size;
+	}
+
+	public String getGoods_yajin() {
+		return goods_yajin;
+	}
+
+	public void setGoods_yajin(String goods_yajin) {
+		this.goods_yajin = goods_yajin;
+	}
+
+	public String getShop_car_status() {
+		return shop_car_status;
+	}
+
+	public void setShop_car_status(String shop_car_status) {
+		this.shop_car_status = shop_car_status;
+	}
+
+	public boolean isSelect() {
+		return isSelect;
+	}
+
+	public void setSelect(boolean select) {
+		isSelect = select;
+	}
+
+
 	public String getId() {
 		return id;
 	}
@@ -80,13 +119,7 @@ public class Shooping_carBean {
 	public void setCancle_time(String cancle_time) {
 		this.cancle_time = cancle_time;
 	}
-	public String getSumbit_time() {
-		return sumbit_time;
-	}
-	public void setSumbit_time(String sumbit_time) {
-		this.sumbit_time = sumbit_time;
-	}
-
+	
 	
 	
 

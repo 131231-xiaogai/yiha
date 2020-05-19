@@ -69,6 +69,7 @@ public class SelectAllUserServlet extends HttpServlet {
 		response.setContentType("text/html;utf-8");
 		
 		String role_id=request.getParameter("role_id");
+		String role_status=request.getParameter("role_status");
 		System.out.println("查询的用户角色为"+role_id);
 
 		TMessage<List<UsersBean>> tMessage=new TMessage(); 
@@ -76,7 +77,7 @@ public class SelectAllUserServlet extends HttpServlet {
 		
 		PrintWriter printWriter=response.getWriter();
 		try {
-			List<UsersBean> usersBeans=UsersDao.selectAllUser(role_id);
+			List<UsersBean> usersBeans=UsersDao.selectAllUser(role_id,role_status);
 			tMessage.setCode(200);
 			tMessage.setMessage("查询成功");
 			tMessage.setData(usersBeans);   //存放要返回给前端显示的数据

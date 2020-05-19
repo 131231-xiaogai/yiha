@@ -67,13 +67,14 @@ public class Select_shopcar_by_useridServlet extends HttpServlet {
 		response.setContentType("text/html;utf-8");
 		
 		String user_id=request.getParameter("user_id");
+		String shop_car_status=request.getParameter("shop_car_status");
 		
 		TMessage  <List<Shooping_carBean>> tMessage=new TMessage();
 		
 		PrintWriter printWriter=response.getWriter();
 		
 		try {
-			List<Shooping_carBean> shooping_carBeans = Shoop_carDao.select_shopcar_by_userid(user_id);
+			List<Shooping_carBean> shooping_carBeans = Shoop_carDao.select_shopcar_by_userid(user_id,shop_car_status);
 				tMessage.setCode(200);
 				tMessage.setMessage("查询成功");
 				tMessage.setData(shooping_carBeans);   //存放要返回给前端显示的数据

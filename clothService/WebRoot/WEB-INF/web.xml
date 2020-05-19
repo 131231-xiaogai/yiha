@@ -152,7 +152,313 @@
     <servlet-name>Update_good_by_goodIdServlet</servlet-name>
     <servlet-class>servlet.Update_good_by_goodIdServlet</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Delete_user_by_userIDServlet</servlet-name>
+    <servlet-class>servlet.Delete_user_by_userIDServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Add_event</servlet-name>
+    <servlet-class>servlet.Add_event</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_event_byUserIDServlet</servlet-name>
+    <servlet-class>servlet.Select_event_byUserIDServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Update_event_byEventIDServlet</servlet-name>
+    <servlet-class>servlet.Update_event_byEventIDServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Deletede_event_byEventIDServlet</servlet-name>
+    <servlet-class>servlet.Deletede_event_byEventIDServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Add_event_byEventIDServlet</servlet-name>
+    <servlet-class>servlet.Add_event_byEventIDServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>select_order_by_UseridAndOrderStstus</servlet-name>
+    <servlet-class>servlet.select_order_by_UseridAndOrderStstus</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UpdateShopCardCountServlet</servlet-name>
+    <servlet-class>servlet.UpdateShopCardCountServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>select_order_by_ShopidAndOrderStstus</servlet-name>
+    <servlet-class>servlet.select_order_by_ShopidAndOrderStstus</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UpdateOrder_statusServlet</servlet-name>
+    <servlet-class>servlet.UpdateOrder_statusServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Add_order</servlet-name>
+    <servlet-class>servlet.Add_order</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_message</servlet-name>
+    <servlet-class>servlet.Select_message</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Insert_message</servlet-name>
+    <servlet-class>servlet.Insert_message</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_message_byshopid</servlet-name>
+    <servlet-class>servlet.Select_message_byshopid</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Update_user_balance</servlet-name>
+    <servlet-class>servlet.Update_user_balance</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Selece_order_totalprice</servlet-name>
+    <servlet-class>servlet.Selece_order_totalprice</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_user_byShopId</servlet-name>
+    <servlet-class>servlet.Select_user_byShopId</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Update_shop_balance</servlet-name>
+    <servlet-class>servlet.Update_shop_balance</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Update_goodNumber</servlet-name>
+    <servlet-class>servlet.Update_goodNumber</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Update_goodNumber_add</servlet-name>
+    <servlet-class>servlet.Update_goodNumber_add</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Update_shopcarStatus</servlet-name>
+    <servlet-class>servlet.Update_shopcarStatus</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Insert_user_bodyData</servlet-name>
+    <servlet-class>servlet.Insert_user_bodyData</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_user_by_id</servlet-name>
+    <servlet-class>Servlet.Select_user_by_id</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Update_user_bodyData</servlet-name>
+    <servlet-class>servlet.Update_user_bodyData</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_Bodydata_byuserId</servlet-name>
+    <servlet-class>servlet.Select_Bodydata_byuserId</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Update_user_role</servlet-name>
+    <servlet-class>servlet.Update_user_role</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_order_by_UseridAndOrderStstus_evaluate_status</servlet-name>
+    <servlet-class>servlet.Select_order_by_UseridAndOrderStstus_evaluate_status</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Add_order_p_content</servlet-name>
+    <servlet-class>servlet.Add_order_p_content</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Updata_Order_evaluateStatus</servlet-name>
+    <servlet-class>servlet.Updata_Order_evaluateStatus</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Selece_shop_evaluate</servlet-name>
+    <servlet-class>servlet.Selece_shop_evaluate</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_allOrder_byUserid</servlet-name>
+    <servlet-class>servlet.Select_allOrder_byUserid</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_allOrder_byShopId</servlet-name>
+    <servlet-class>servlet.Select_allOrder_byShopId</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_address_by_addressId</servlet-name>
+    <servlet-class>servlet.Select_address_by_addressId</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_evaluate_by_orderid</servlet-name>
+    <servlet-class>servlet.Select_evaluate_by_orderid</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_shopOrder_byMonth</servlet-name>
+    <servlet-class>servlet.Select_shopOrder_byMonth</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_good_bylikeName</servlet-name>
+    <servlet-class>servlet.Select_good_bylikeName</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_order_byShopidAndOrderStstus_likeName</servlet-name>
+    <servlet-class>servlet.Select_order_byShopidAndOrderStstus_likeName</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_order_byUseridAndOrderStstus_likeName</servlet-name>
+    <servlet-class>servlet.Select_order_byUseridAndOrderStstus_likeName</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_all_user_likeNane</servlet-name>
+    <servlet-class>servlet.Select_all_user_likeNane</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_all_good_likeName</servlet-name>
+    <servlet-class>servlet.Select_all_good_likeName</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_allOrder_byShopIdandLikename</servlet-name>
+    <servlet-class>servlet.Select_allOrder_byShopIdandLikename</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_order_byUseridAndlikeName</servlet-name>
+    <servlet-class>servlet.Select_order_byUseridAndlikeName</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Select_shop_likeaddress</servlet-name>
+    <servlet-class>servlet.Select_shop_likeaddress</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
+
+  
+  <servlet-mapping>
+    <servlet-name>Delete_user_by_userIDServlet</servlet-name>
+    <url-pattern>/Delete_user_by_userIDServlet</url-pattern>
+  </servlet-mapping>
   
   
   <servlet-mapping>
@@ -248,6 +554,174 @@
   <servlet-mapping>
     <servlet-name>Update_good_by_goodIdServlet</servlet-name>
     <url-pattern>/Update_good_by_goodIdServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Add_event</servlet-name>
+    <url-pattern>/Add_event</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_event_byUserIDServlet</servlet-name>
+    <url-pattern>/Select_event_byUserIDServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Update_event_byEventIDServlet</servlet-name>
+    <url-pattern>/Update_event_byEventIDServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Deletede_event_byEventIDServlet</servlet-name>
+    <url-pattern>/Deletede_event_byEventIDServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Add_event_byEventIDServlet</servlet-name>
+    <url-pattern>/Add_event_byEventIDServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>select_order_by_UseridAndOrderStstus</servlet-name>
+    <url-pattern>/select_order_by_UseridAndOrderStstus</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateShopCardCountServlet</servlet-name>
+    <url-pattern>/UpdateShopCardCountServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>select_order_by_ShopidAndOrderStstus</servlet-name>
+    <url-pattern>/select_order_by_ShopidAndOrderStstus</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateOrder_statusServlet</servlet-name>
+    <url-pattern>/UpdateOrder_statusServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Add_order</servlet-name>
+    <url-pattern>/Add_order</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_message</servlet-name>
+    <url-pattern>/Select_message</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Insert_message</servlet-name>
+    <url-pattern>/Insert_message</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_message_byshopid</servlet-name>
+    <url-pattern>/Select_message_byshopid</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Update_user_balance</servlet-name>
+    <url-pattern>/Update_user_balance</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Selece_order_totalprice</servlet-name>
+    <url-pattern>/Selece_order_totalprice</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_user_byShopId</servlet-name>
+    <url-pattern>/Select_user_byShopId</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Update_shop_balance</servlet-name>
+    <url-pattern>/Update_shop_balance</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Update_goodNumber</servlet-name>
+    <url-pattern>/Update_goodNumber</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Update_goodNumber_add</servlet-name>
+    <url-pattern>/Update_goodNumber_add</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Update_shopcarStatus</servlet-name>
+    <url-pattern>/Update_shopcarStatus</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Insert_user_bodyData</servlet-name>
+    <url-pattern>/Insert_user_bodyData</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_user_by_id</servlet-name>
+    <url-pattern>/Select_user_by_id</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Update_user_bodyData</servlet-name>
+    <url-pattern>/Update_user_bodyData</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_Bodydata_byuserId</servlet-name>
+    <url-pattern>/Select_Bodydata_byuserId</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Update_user_role</servlet-name>
+    <url-pattern>/Update_user_role</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_order_by_UseridAndOrderStstus_evaluate_status</servlet-name>
+    <url-pattern>/Select_order_by_UseridAndOrderStstus_evaluate_status</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Add_order_p_content</servlet-name>
+    <url-pattern>/Add_order_p_content</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Updata_Order_evaluateStatus</servlet-name>
+    <url-pattern>/Updata_Order_evaluateStatus</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Selece_shop_evaluate</servlet-name>
+    <url-pattern>/Selece_shop_evaluate</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_allOrder_byUserid</servlet-name>
+    <url-pattern>/Select_allOrder_byUserid</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_allOrder_byShopId</servlet-name>
+    <url-pattern>/Select_allOrder_byShopId</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_address_by_addressId</servlet-name>
+    <url-pattern>/Select_address_by_addressId</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_evaluate_by_orderid</servlet-name>
+    <url-pattern>/Select_evaluate_by_orderid</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_shopOrder_byMonth</servlet-name>
+    <url-pattern>/Select_shopOrder_byMonth</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_good_bylikeName</servlet-name>
+    <url-pattern>/Select_good_bylikeName</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_order_byShopidAndOrderStstus_likeName</servlet-name>
+    <url-pattern>/Select_order_byShopidAndOrderStstus_likeName</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_order_byUseridAndOrderStstus_likeName</servlet-name>
+    <url-pattern>/Select_order_byUseridAndOrderStstus_likeName</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_all_user_likeNane</servlet-name>
+    <url-pattern>/Select_all_user_likeNane</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_all_good_likeName</servlet-name>
+    <url-pattern>/Select_all_good_likeName</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_allOrder_byShopIdandLikename</servlet-name>
+    <url-pattern>/Select_allOrder_byShopIdandLikename</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_order_byUseridAndlikeName</servlet-name>
+    <url-pattern>/Select_order_byUseridAndlikeName</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Select_shop_likeaddress</servlet-name>
+    <url-pattern>/Select_shop_likeaddress</url-pattern>
   </servlet-mapping>
   
   

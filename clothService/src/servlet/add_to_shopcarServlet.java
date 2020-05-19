@@ -80,8 +80,10 @@ public class add_to_shopcarServlet extends HttpServlet {
 		
 		String shop_name=new String( request.getParameter("shop_name").getBytes("ISO8859-1"),"utf-8");
 		String cancle_time= request.getParameter("cancle_time");
-		String sumbit_time= request.getParameter("sumbit_time");
-		
+		String shop_car_status= request.getParameter("shop_car_status");
+		String goods_yajin = request.getParameter("goods_yajin");
+		//good_size
+		String good_size = new String(request.getParameter("good_size").getBytes("ISO8859-1"),"utf-8");
 		System.out.println(user_id);
 		
 		Message me=new Message();
@@ -92,7 +94,7 @@ public class add_to_shopcarServlet extends HttpServlet {
              SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
               shooping_carBean.setAdd_time(simpleDateFormat.format(date));
 			if(Shoop_carDao.add_to_shopcar(user_id,good_number,goods_id,shop_id,good_name,
-					good_price,good_img,shop_name,shooping_carBean.getAdd_time(),cancle_time,sumbit_time)){
+					good_price,good_img,shop_name,shooping_carBean.getAdd_time(),cancle_time,shop_car_status,goods_yajin,good_size)){
 				me.setCode(200);
 				me.setMessage("±£´æ³É¹¦£¡");
 				me.setData(null);

@@ -81,12 +81,29 @@ public class PublicgoodServlet extends HttpServlet {
 						goodBean.setGoods_price(content);
 					}else if ("goods_yajin".equals(itemNameString)) {
 						goodBean.setGoods_yajin(content);	
-					}else if ("goods_type_id".equals(itemNameString)) {
-						goodBean.setType_id(content);	
+					}else if ("goods_size_id".equals(itemNameString)) {
+						goodBean.setSize(content);	
 					} else if ("shop_id".equals(itemNameString)) {
 						goodBean.setShop_id(content);	
+					}else if ("shop_name".equals(itemNameString)) {
+						goodBean.setShop_name(content);
 					}
-                    
+					else if ("type_id".equals(itemNameString)) {
+						goodBean.setType_id(content);
+					}else if ("type_activity_id".equals(itemNameString)) {
+						goodBean.setType_activity_id(content);
+					}else if ("add_number".equals(itemNameString)) {
+						goodBean.setGoods_number(content);
+					}
+					else if ("clothing_length".equals(itemNameString)) {
+						goodBean.setClothing_length(content);
+					}else if ("sleeve_length".equals(itemNameString)) {
+						goodBean.setSleeve_length(content);
+					}else if ("shoulder_width".equals(itemNameString)) {
+						goodBean.setShoulder_width(content);
+					}else if ("trousers_length".equals(itemNameString)) {
+						goodBean.setTrousers_length(content);
+					}
                     
                 } else {
                     File tempFile = new File(request.getSession().getServletContext().getRealPath("/") + "images" + File.separator
@@ -105,25 +122,36 @@ public class PublicgoodServlet extends HttpServlet {
             }
         }
         try {
-//            Date date = new Date();
-//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//            feedBackBean.setFeedback_time(simpleDateFormat.format(date));
             GoodDao goodDao = new GoodDao();
-            boolean addFlag = GoodDao.addgood(goodBean.getGood_img(),goodBean.getGoods_name(),goodBean.getGoods_price(),goodBean.getGoods_yajin(),goodBean.getType_id(),goodBean.getShop_id(),goodBean.getShop_name());
+            boolean addFlag = GoodDao.addgood(
+            		goodBean.getGood_img(),//1
+            		goodBean.getGoods_name(),//2
+            		goodBean.getGoods_price(),//3
+            		goodBean.getGoods_yajin(),//4
+            		goodBean.getSize(),//5
+            		goodBean.getShop_id(),//6
+            		goodBean.getShop_name(),//7
+                    goodBean.getType_id(),//8
+                    goodBean.getType_activity_id(),//9
+                    goodBean.getGoods_number(),//10
+                    goodBean.getClothing_length(),
+            		goodBean.getSleeve_length(),
+            		goodBean.getShoulder_width(),
+            		goodBean.getTrousers_length()
+                    );
+	
             if (addFlag) {
             	message.setCode(200);
                 message.setData(null);
-                message.setMessage("添加成功");
+                message.setMessage("添加商品成功");
                 out.print(JSON.toJSONString(message));
             } else {
                 message.setCode(-11);
                 message.setData("null");
-                message.setMessage("添加失败");
+                message.setMessage("添加商品失败");
                 out.print(JSON.toJSONString(message));
             }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

@@ -72,13 +72,18 @@ public class Update_good_by_goodIdServlet extends HttpServlet {
 		String goods_price= request.getParameter("goods_price");
 		String goods_yajin=request.getParameter("goods_yajin");
 		String goods_number=request.getParameter("goods_number");
-		String type_id= request.getParameter("goods_type");
+		String size= request.getParameter("size");
+		String clothing_length= request.getParameter("clothing_length");
+		String sleeve_length= request.getParameter("sleeve_length");
+		String shoulder_width= request.getParameter("shoulder_width");
+		String trousers_length= request.getParameter("trousers_length");
+
 		System.out.println(goods_name);
 		
 		Message me=new Message();
-		
 		try {
-			if(GoodDao.update_good_by_goodId(goods_id, goods_name,goods_price,goods_yajin,goods_number,type_id)){
+			if(GoodDao.update_good_by_goodId(goods_id, goods_name,goods_price,goods_yajin,goods_number,size,clothing_length,
+					sleeve_length,shoulder_width,trousers_length)){
 				me.setCode(200);
 				me.setMessage("保存成功！");
 				me.setData(null);
@@ -86,7 +91,6 @@ public class Update_good_by_goodIdServlet extends HttpServlet {
 				me.setCode(-11);//返回给前端程序代码
 				me.setMessage("保存失败，请重试。");//返回给用户看
 				me.setData(null);
-				
 			}
 			
 		} catch (SQLException e) {
