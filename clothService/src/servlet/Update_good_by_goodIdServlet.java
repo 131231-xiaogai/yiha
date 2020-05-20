@@ -72,7 +72,7 @@ public class Update_good_by_goodIdServlet extends HttpServlet {
 		String goods_price= request.getParameter("goods_price");
 		String goods_yajin=request.getParameter("goods_yajin");
 		String goods_number=request.getParameter("goods_number");
-		String size= request.getParameter("size");
+		String size= new String(request.getParameter("size").getBytes("ISO8859-1"),"UTF-8");
 		String clothing_length= request.getParameter("clothing_length");
 		String sleeve_length= request.getParameter("sleeve_length");
 		String shoulder_width= request.getParameter("shoulder_width");
